@@ -10,10 +10,10 @@
     <div class="modalHeader__container">
       <div class="modalHeader__top">
         <ButtonWithIcon name="back" @click="$emit('closeModal')" />
-        <span class="modalHeader__topTitle"> {{ title }}</span>
+        <span class="modalHeader__topTitle">{{ title }}</span>
       </div>
 
-      <Sidebar />
+      <Sidebar @closeModal="$emit('closeModal')" />
     </div>
   </div>
 </template>

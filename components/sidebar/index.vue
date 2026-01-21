@@ -1,11 +1,15 @@
 <template>
   <aside class="sidebar page-padding-x">
-    <div class="sidebar__content">sideBar</div>
+    <div class="sidebar__content">
+      <SidebarMenu @closeModal="$emit('closeModal')" />
+    </div>
     <div>counter</div>
   </aside>
 </template>
 
-<script setup></script>
+<script setup>
+const emit = defineEmits(["closeModal"]);
+</script>
 
 <style lang="scss" scoped>
 .sidebar {
@@ -14,8 +18,9 @@
   justify-content: space-between;
   height: calc(100vh - 81px);
   border-right: 1px solid var(--border-primary);
+  padding-top: 20px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     border-right: none;
   }
 

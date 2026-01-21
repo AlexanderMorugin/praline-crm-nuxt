@@ -8,7 +8,8 @@
         name="menu"
         @handleClick="isMenuModalOpen = true"
       />
-      <span>HEADER</span>
+
+      <HeaderTitle />
       <ButtonWithIcon name="back" />
     </div>
 
@@ -41,7 +42,7 @@ const isMenuModalOpen = ref(false);
   height: 80px;
   border-bottom: 1px solid var(--border-primary);
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     height: 60px;
   }

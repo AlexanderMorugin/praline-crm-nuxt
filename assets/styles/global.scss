@@ -32,21 +32,10 @@ button {
   cursor: pointer;
 }
 
-// .line-dashed {
-//   width: 100%;
-//   min-width: 20px;
-//   border-bottom: 1px dashed var(--border-primary);
-// }
-// .line-solid {
-//   width: 100%;
-//   min-width: 20px;
-//   border-bottom: 1px solid var(--border-primary);
-// }
 .page-padding-x {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-
 .left-enter-active,
 .left-leave-active {
   transition: all 0.3s ease;

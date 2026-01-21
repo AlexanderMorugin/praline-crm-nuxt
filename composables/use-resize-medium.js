@@ -14,7 +14,7 @@ export function useResizeMedium() {
   const resizeHandler = () => {
     windowWidth.value = window.innerWidth;
 
-    if (windowWidth.value <= 767) {
+    if (windowWidth.value <= 1024) {
       isScreenMedium.value = true;
       return;
     }

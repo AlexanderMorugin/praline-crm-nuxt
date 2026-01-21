@@ -32,7 +32,7 @@ const { isScreenMedium } = useResizeMedium();
     display: grid;
     grid-template-columns: 320px 1fr;
 
-    @media (max-width: 767px) {
+    @media (max-width: 1024px) {
       grid-template-columns: 1fr;
     }
   }
@@ -41,6 +41,8 @@ const { isScreenMedium } = useResizeMedium();
     width: 100%;
     height: calc(100vh - 81px);
     background: var(--gradient-primary);
+    padding-top: 20px;
+    padding-bottom: 20px;
 
     @media (max-width: 767px) {
       height: calc(100vh - 61px);
