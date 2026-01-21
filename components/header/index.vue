@@ -1,32 +1,37 @@
 <template>
   <header class="header">
-    <HeaderLogo />
-    HEADER
+    <HeaderLogo v-if="!isScreenMedium" />
+
+    <div class="header__content page-padding-x">
+      <ButtonWithIcon v-if="isScreenMedium" name="menu" />
+      <span>HEADER</span>
+      <ButtonWithIcon name="back" />
+    </div>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+const { isScreenMedium } = useResizeMedium();
+</script>
 
 <style lang="scss" scoped>
 .header {
-  // position: sticky;
-  // top: 0;
-  display: flex;
-  // align-items: center;
-  // width: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
   height: 80px;
-
-  // animation: filter 3s ease;
-  // backdrop-filter: blur(15px) grayscale(50%);
   border-bottom: 1px solid var(--border-primary);
-  // padding-left: 8px;
-  // padding-right: 8px;
-  // z-index: 3;
-
-  // border: 1px solid red;
 
   @media (max-width: 767px) {
+    grid-template-columns: 1fr;
     height: 60px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 }
 </style>

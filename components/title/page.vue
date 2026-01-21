@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="titlePage page-padding-x">
     <h1 class="titlePage__title">{{ title }}</h1>
   </div>
@@ -51,4 +51,4 @@ const { title } = defineProps(["title"]);
     }
   }
 }
-</style>
+</style> -->

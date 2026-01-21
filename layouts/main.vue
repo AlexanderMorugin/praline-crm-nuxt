@@ -2,13 +2,19 @@
   <div class="mainLayout">
     <Header />
     <div class="mainLayout__content">
-      <Sidebar />
-      <main class="mainLayout__main">
+      <ClientOnly>
+        <Sidebar v-if="!isScreenMedium" />
+      </ClientOnly>
+      <main class="mainLayout__main page-padding-x">
         <NuxtPage />
       </main>
     </div>
   </div>
 </template>
+
+<script setup>
+const { isScreenMedium } = useResizeMedium();
+</script>
 
 <style lang="scss" scoped>
 .mainLayout {
@@ -22,15 +28,22 @@
   margin: 0 auto;
 
   &__content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__main {
     width: 100%;
-    // height: 100%;
     height: calc(100vh - 81px);
     background: var(--gradient-primary);
-    // border: 1px solid red;
+
+    @media (max-width: 767px) {
+      height: calc(100vh - 61px);
+    }
   }
 }
 </style>

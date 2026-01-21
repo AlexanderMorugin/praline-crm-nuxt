@@ -1,6 +1,6 @@
 <template>
-  <aside class="sidebar">
-    <div>sideBar</div>
+  <aside class="sidebar page-padding-x">
+    <div class="sidebar__content">sideBar</div>
     <div>counter</div>
   </aside>
 </template>
@@ -12,19 +12,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 320px;
   height: calc(100vh - 81px);
   border-right: 1px solid var(--border-primary);
-  // border: 1px solid red;
 
-  // @media (max-width: 1024px) {
-  //   max-width: 100%;
-  //   border-right: none;
-  // }
-
-  // &__content {
-  //   height: 100%;
-  //   border-right: 1px solid var(--border-primary);
-  // }
+  &__content {
+    // border: 1px solid red;
+  }
 }
 </style>
