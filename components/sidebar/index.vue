@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar page-padding-x">
+  <aside :class="['sidebar', { 'page-padding-x': place === 'desktop' }]">
     <div class="sidebar__content">
       <SidebarMenu @closeModal="$emit('closeModal')" />
     </div>
@@ -9,6 +9,7 @@
 
 <script setup>
 const emit = defineEmits(["closeModal"]);
+const { place } = defineProps(["place"]);
 </script>
 
 <style lang="scss" scoped>

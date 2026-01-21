@@ -1,5 +1,5 @@
 <template>
-  <div class="orderListCard">
+  <NuxtLink :to="`/orders/${order.id}`" class="orderListCard">
     <div class="orderListCard__text">
       Заказ №
       <span class="orderListCard__text orderListCard__text_accent">{{
@@ -10,7 +10,8 @@
         order.order_date
       }}</span>
     </div>
-  </div>
+    {{ order }}
+  </NuxtLink>
 </template>
 
 <script setup>

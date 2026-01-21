@@ -36,8 +36,8 @@ const emit = defineEmits(["closeModal"]);
   background: var(--white-primary);
   padding-top: 10px;
   padding-bottom: 10px;
-  overflow-y: scroll;
-  z-index: 10;
+  overflow-y: auto;
+  z-index: 1;
 
   &_left {
     left: 0;

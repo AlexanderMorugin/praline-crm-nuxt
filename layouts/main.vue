@@ -4,7 +4,7 @@
     <div class="mainLayout__content">
       <!-- Сайдбар для десктопа -->
       <ClientOnly>
-        <Sidebar v-if="!isScreenMedium" />
+        <Sidebar v-if="!isScreenMedium" place="desktop" />
       </ClientOnly>
       <main class="mainLayout__main page-padding-x">
         <NuxtPage />
