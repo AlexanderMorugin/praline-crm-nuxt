@@ -3,15 +3,34 @@
     <HeaderLogo v-if="!isScreenMedium" />
 
     <div class="header__content page-padding-x">
-      <ButtonWithIcon v-if="isScreenMedium" name="menu" />
+      <ButtonWithIcon
+        v-if="isScreenMedium"
+        name="menu"
+        @handleClick="isMenuModalOpen = true"
+      />
       <span>HEADER</span>
       <ButtonWithIcon name="back" />
     </div>
+
+    <!-- Сайдбар для мобилки -->
+    <Teleport to="#teleports">
+      <Transition name="left">
+        <ModalHeader
+          v-if="isMenuModalOpen"
+          :isModalOpen="isMenuModalOpen"
+          place="left"
+          title="Меню"
+          @closeModal="isMenuModalOpen = false"
+        />
+      </Transition>
+    </Teleport>
   </header>
 </template>
 
 <script setup>
 const { isScreenMedium } = useResizeMedium();
+
+const isMenuModalOpen = ref(false);
 </script>
 
 <style lang="scss" scoped>

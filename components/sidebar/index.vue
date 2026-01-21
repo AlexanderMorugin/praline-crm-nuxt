@@ -15,6 +15,10 @@
   height: calc(100vh - 81px);
   border-right: 1px solid var(--border-primary);
 
+  @media (max-width: 767px) {
+    border-right: none;
+  }
+
   &__content {
     // border: 1px solid red;
   }

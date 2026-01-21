@@ -2,6 +2,7 @@
   <button class="buttonWithIcon" @click="emit('handleClick')">
     <IconMenu v-if="name === 'menu'" class="icon" />
     <IconArrowBack v-if="name === 'back'" class="icon" />
+    <IconClose v-if="name === 'close'" class="icon" />
   </button>
 </template>
 
@@ -28,6 +29,8 @@ const emit = defineEmits(["handleClick"]);
 }
 
 .icon {
+  width: 24px;
+  height: 24px;
   fill: var(--black-primary);
 }
 .buttonWithIcon:hover .icon {

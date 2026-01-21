@@ -2,6 +2,7 @@
   <div class="mainLayout">
     <Header />
     <div class="mainLayout__content">
+      <!-- Сайдбар для десктопа -->
       <ClientOnly>
         <Sidebar v-if="!isScreenMedium" />
       </ClientOnly>
