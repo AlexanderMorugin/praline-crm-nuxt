@@ -20,6 +20,6 @@ await ordersStore.loadOrders();
 .orders {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 </style>
