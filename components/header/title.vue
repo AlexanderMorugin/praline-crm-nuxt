@@ -4,6 +4,8 @@
       ? "Главная"
       : route.path === "/orders"
       ? "Заказы"
+      : route.path === `/orders/${route.params.id}`
+      ? "Детали заказа"
       : route.path === "/cakes"
       ? "Торты"
       : route.path === "/pastry"

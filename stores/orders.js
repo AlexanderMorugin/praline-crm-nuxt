@@ -2,16 +2,35 @@ import { defineStore } from "pinia";
 
 export const useOrdersStore = defineStore("ordersStore", () => {
   const orders = ref([]);
+  const order = ref(null);
 
   const loadOrders = async () => {
     const result = await useFetch("/api/orders/load-orders", {
       method: "GET",
     });
 
-    // console.log(result.data.value);
-    orders.value = result.data.value;
+    if (result.status.value === "success") {
+      // console.log(result);
 
-    // return result;
+      orders.value = result.data.value;
+    }
+
+    return result;
+  };
+
+  const getOrder = async (orderId) => {
+    const result = await useFetch("/api/orders/get-order", {
+      method: "POST",
+      body: {
+        id: orderId,
+      },
+    });
+
+    if (result.status.value === "success") {
+      order.value = result.data.value[0];
+    }
+
+    return result;
   };
 
   // const deleteOrder = async (orderId: number) => {
@@ -29,7 +48,9 @@ export const useOrdersStore = defineStore("ordersStore", () => {
 
   return {
     orders,
+    order,
     loadOrders,
+    getOrder,
     // deleteOrder,
     // cleanOrder,
   };

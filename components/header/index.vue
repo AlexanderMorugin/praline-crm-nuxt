@@ -10,7 +10,11 @@
       />
 
       <HeaderTitle />
-      <ButtonWithIcon name="back" />
+      <ButtonWithIcon
+        v-if="route.path === `/orders/${route.params.id}`"
+        name="back"
+        @handleClick="router.go(-1)"
+      />
     </div>
 
     <!-- Сайдбар для мобилки -->
@@ -29,6 +33,8 @@
 </template>
 
 <script setup>
+const route = useRoute();
+const router = useRouter();
 const { isScreenMedium } = useResizeMedium();
 
 const isMenuModalOpen = ref(false);
