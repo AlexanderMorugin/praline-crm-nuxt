@@ -16,9 +16,15 @@
 
     <div class="orderListCard__block">
       <div class="orderListCard__blockTop">
-        <span class="orderListCard__textDoubleAccent">{{
-          order.delivery_type
-        }}</span>
+        <span
+          class="orderListCard__textDoubleAccent"
+          :class="
+            order.delivery_type === 'Доставка'
+              ? 'orderListCard__red'
+              : 'orderListCard__green'
+          "
+          >{{ order.delivery_type }}</span
+        >
       </div>
       <div class="orderListCard__string">
         <IconAccount class="orderListCard__icon" />
@@ -66,7 +72,7 @@ const { order } = defineProps(["order"]);
 .orderListCard {
   display: grid;
   grid-template-columns: 150px 1fr 170px 150px;
-  border-radius: var(--border-radius-s);
+  border-radius: var(--border-radius-xs);
   background: var(--deep-blue-thirdly);
 
   @media (max-width: 767px) {
@@ -124,6 +130,16 @@ const { order } = defineProps(["order"]);
     display: flex;
     align-items: center;
     gap: 6px;
+  }
+
+  &__red {
+    // opacity: 1;
+    color: var(--red-primary);
+  }
+
+  &__green {
+    // opacity: 1;
+    color: var(--green-primary);
   }
 }
 </style>

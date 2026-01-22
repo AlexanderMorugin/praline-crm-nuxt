@@ -1,7 +1,7 @@
 <template>
-  <!-- <div> -->
-  <div>{{ orderStore.order }}</div>
-  <!-- </div> -->
+  <div>
+    <OrderCard :order="orderStore.order" />
+  </div>
 </template>
 
 <script setup>
