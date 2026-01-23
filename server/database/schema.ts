@@ -31,6 +31,10 @@ export const orders = pgTable("orders", {
 
   cart_list: json("cart_list"),
 
+  status_confirm: text("status_confirm"),
+  status_delivery: text("status_delivery"),
+  status_complete: text("status_complete"),
+
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });

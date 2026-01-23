@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div
+    <!-- <div
       v-if="status === 'pending' || status === 'done'"
       class="buttonManager buttonManager_done"
     >
@@ -13,6 +13,13 @@
         status === 'complete' ||
         status === 'delete'
       "
+      :class="['buttonManager', { buttonManager_delete: status === 'delete' }]"
+      @click="emit('handleClick')"
+    >
+      {{ title }}
+    </button> -->
+
+    <button
       :class="['buttonManager', { buttonManager_delete: status === 'delete' }]"
       @click="emit('handleClick')"
     >

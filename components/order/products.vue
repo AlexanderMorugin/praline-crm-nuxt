@@ -29,7 +29,9 @@
 
         <div class="orderProducts__prices">
           <span class="orderProducts__noAccent orderProducts__right">{{
-            item.discount ? `Цена со скидкой` : "Цена без скидки"
+            item.discount
+              ? `Цена со скидкой ${item.discount}%`
+              : "Цена без скидки"
           }}</span>
           <span class="orderProducts__noAccent orderProducts__right">{{
             item.discount

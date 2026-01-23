@@ -10,7 +10,7 @@
     <OrderProducts :order="order" />
     <div class="line-solid" />
     <OrderTotal :order="order" />
-    <!-- <div>{{ order }}</div> -->
+    <div class="test">{{ order }}</div>
   </div>
 </template>
 

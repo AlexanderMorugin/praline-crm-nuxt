@@ -7,7 +7,8 @@
           class="modalConfirm__button modalConfirm__button_yes"
           @click="emit('yesClick')"
         >
-          Да
+          <LoaderButton v-if="isLoading" />
+          <span v-else>Да</span>
         </button>
         <button
           class="modalConfirm__button modalConfirm__button_no"
@@ -21,7 +22,7 @@
 </template>
 
 <script setup>
-const { title } = defineProps(["title"]);
+const { title, isLoading } = defineProps(["title", "isLoading"]);
 const emit = defineEmits(["yesClick", "noClick"]);
 </script>
 

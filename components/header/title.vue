@@ -26,7 +26,7 @@ const route = useRoute();
 .headerTitle {
   font-family: "Inter-SemiBold", sans-serif;
   font-size: 24px;
-  color: var(--deep-blue-secondary);
+  color: var(--deep-blue-thirdly);
 
   @media (max-width: 767px) {
     font-size: 18px;

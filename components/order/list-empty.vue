@@ -12,15 +12,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  // height: 100vh;
 
   &__title {
     font-family: "Inter-SemiBold", sans-serif;
     font-size: 18px;
     line-height: 32px;
     letter-spacing: 2px;
+    color: var(--deep-blue-thirdly);
     padding-top: 100px;
-    // color: var(--white-primary);
   }
 }
 </style>

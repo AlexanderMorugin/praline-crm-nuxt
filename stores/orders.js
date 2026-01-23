@@ -10,8 +10,6 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     });
 
     if (result.status.value === "success") {
-      // console.log(result);
-
       orders.value = result.data.value;
     }
 
@@ -33,9 +31,51 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     return result;
   };
 
-  const deleteOrder = async () => {
-    // console.log(order.value.id);
+  const updateConfirmOrderDate = async (date) => {
+    // console.log(date);
 
+    const result = await useFetch("/api/orders/confirm-order", {
+      method: "POST",
+      body: {
+        id: order.value.id,
+        status: date,
+      },
+    });
+
+    if (result.status.value === "success") {
+      order.value.status_confirm = date;
+
+      orders.value = orders.value.map((item) =>
+        item.id === order.value.id ? { ...item, status_confirm: date } : item
+      );
+    }
+
+    return result;
+  };
+
+  const updateDeliveryOrderDate = async (date) => {
+    // console.log(date);
+
+    const result = await useFetch("/api/orders/delivery-order", {
+      method: "POST",
+      body: {
+        id: order.value.id,
+        status: date,
+      },
+    });
+
+    if (result.status.value === "success") {
+      order.value.status_delivery = date;
+
+      orders.value = orders.value.map((item) =>
+        item.id === order.value.id ? { ...item, status_delivery: date } : item
+      );
+    }
+
+    return result;
+  };
+
+  const deleteOrder = async () => {
     const result = await useFetch("/api/orders/delete-order", {
       method: "DELETE",
       body: {
@@ -45,20 +85,18 @@ export const useOrdersStore = defineStore("ordersStore", () => {
 
     if (result.status.value === "success") {
       orders.value = orders.value.filter((item) => item.id !== order.id);
-      // order.value = null;
     }
 
     return result;
   };
-
-  // const cleanOrder = () => (order.value = null);
 
   return {
     orders,
     order,
     loadOrders,
     getOrder,
+    updateConfirmOrderDate,
+    updateDeliveryOrderDate,
     deleteOrder,
-    // cleanOrder,
   };
 });
