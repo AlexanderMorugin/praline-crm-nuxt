@@ -76,11 +76,19 @@ const emit = defineEmits(["yesClick", "noClick"]);
     letter-spacing: 1px;
 
     &_yes {
-      background: var(--mask-white-primary);
+      background: var(--mask-blue-secondary);
+
+      &:hover {
+        background: var(--mask-blue-thirdly);
+      }
     }
 
     &_no {
       background: var(--red-primary);
+
+      &:hover {
+        background: var(--red-secondary);
+      }
     }
   }
 }

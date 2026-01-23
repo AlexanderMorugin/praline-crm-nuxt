@@ -33,16 +33,23 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     return result;
   };
 
-  // const deleteOrder = async (orderId: number) => {
-  //   const result = await useFetch("/api/orders/delete-order", {
-  //     method: "DELETE",
-  //     body: {
-  //       id: orderId,
-  //     },
-  //   });
+  const deleteOrder = async () => {
+    // console.log(order.value.id);
 
-  //   return result;
-  // };
+    const result = await useFetch("/api/orders/delete-order", {
+      method: "DELETE",
+      body: {
+        id: order.value.id,
+      },
+    });
+
+    if (result.status.value === "success") {
+      orders.value = orders.value.filter((item) => item.id !== order.id);
+      // order.value = null;
+    }
+
+    return result;
+  };
 
   // const cleanOrder = () => (order.value = null);
 
@@ -51,7 +58,7 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     order,
     loadOrders,
     getOrder,
-    // deleteOrder,
+    deleteOrder,
     // cleanOrder,
   };
 });

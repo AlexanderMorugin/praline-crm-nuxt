@@ -7,7 +7,7 @@
     </div>
     <OrderUser :order="order" />
     <div class="line-solid" />
-    <OrderList :order="order" />
+    <OrderProducts :order="order" />
     <div class="line-solid" />
     <OrderTotal :order="order" />
     <!-- <div>{{ order }}</div> -->

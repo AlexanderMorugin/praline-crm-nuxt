@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <ul class="orderManager">
-      <li v-for="button in managerButtons" :key="button.id">
-        <ButtonManager
-          :title="button.title"
-          :status="button.status"
-          @handleClick="manageButtonClick(button.id)"
-        />
-      </li>
-    </ul>
+  <ul class="orderManager">
+    <li v-for="button in managerButtons" :key="button.id">
+      <ButtonManager
+        :title="button.title"
+        :status="button.status"
+        @handleClick="manageButtonClick(button.id)"
+      />
+    </li>
 
-    <!-- Сайдбар для мобилки -->
+    <!-- Модалка подтверждения -->
     <Teleport to="#teleports">
       <Transition name="top">
         <ModalConfirm
-          v-if="isMenuModalOpen"
+          v-if="isConfirmModalOpen"
           :isModalOpen="isMenuModalOpen"
           title="Подтвердить удаление"
-          @yesClick="isMenuModalOpen = false"
-          @noClick="isMenuModalOpen = false"
+          @yesClick="deleteOrder"
+          @noClick="isConfirmModalOpen = false"
         />
       </Transition>
     </Teleport>
-  </div>
+  </ul>
 </template>
 
 <script setup>
+const toast = useToast();
+const orderStore = useOrdersStore();
+
+const isLoading = ref(false);
 const managerButtons = ref([
   { id: 1, title: "Подтвердить", status: "done" },
   { id: 2, title: "Доставить", status: "deliver" },
@@ -33,11 +35,40 @@ const managerButtons = ref([
   { id: 4, title: "Удалить", status: "delete" },
 ]);
 
-const isMenuModalOpen = ref(false);
+const isConfirmModalOpen = ref(false);
 
 const manageButtonClick = (id) => {
   if (id === 4) {
-    isMenuModalOpen.value = true;
+    isConfirmModalOpen.value = true;
+  }
+};
+
+const deleteOrder = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await orderStore.deleteOrder();
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Заказ удалить не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Заказ удален.",
+      });
+    }
+
+    return navigateTo("/orders");
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isConfirmModalOpen.value = false;
+    isLoading.value = false;
   }
 };
 </script>
