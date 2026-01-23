@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="orderPage">
     <OrderCard :order="orderStore.order" />
+    <OrderManager />
   </div>
 </template>
 
@@ -12,3 +13,11 @@ const route = useRoute();
 const orderStore = useOrdersStore();
 await orderStore.getOrder(route.params.id);
 </script>
+
+<style lang="scss" scoped>
+.orderPage {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+</style>

@@ -34,13 +34,18 @@ const emit = defineEmits(["closeModal"]);
   padding: 14px 16px;
 
   &:hover {
-    background: var(--gradient-primary);
+    background: var(--mask-blue-primary);
   }
 
   &_active {
-    background: var(--gradient-primary);
+    background: var(--deep-blue-thirdly);
     box-shadow: var(--shadow-thirdly);
+    color: var(--white-primary);
     cursor: auto;
+
+    &:hover {
+      background: var(--deep-blue-thirdly);
+    }
   }
 }
 </style>

@@ -79,6 +79,10 @@ const { order } = defineProps(["order"]);
     grid-template-columns: 1fr 1fr;
   }
 
+  &:hover {
+    animation: jump 0.3s ease-in-out;
+  }
+
   &__block {
     display: flex;
     flex-direction: column;
@@ -133,13 +137,20 @@ const { order } = defineProps(["order"]);
   }
 
   &__red {
-    // opacity: 1;
     color: var(--red-primary);
   }
 
   &__green {
-    // opacity: 1;
     color: var(--green-primary);
+  }
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(-2px);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 </style>

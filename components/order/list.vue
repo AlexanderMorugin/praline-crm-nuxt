@@ -2,7 +2,7 @@
   <ul class="orderList">
     <li v-for="item in order.cart_list" :key="item.id" class="orderList__item">
       <img
-        :src="item.image_list_card"
+        :src="`https://pralinecakes-nuxt.vercel.app/${item.image_list_card}`"
         :alt="item.name"
         class="orderList__image"
       />

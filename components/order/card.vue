@@ -27,6 +27,10 @@ const { order } = defineProps(["order"]);
   background: var(--deep-blue-thirdly);
   padding: 20px;
 
+  @media (max-width: 767px) {
+    padding: 20px 10px;
+  }
+
   &__title {
     font-family: "Inter-Regular", sans-serif;
     font-size: 16px;
