@@ -9,6 +9,7 @@
           !orderStore.order.status_delivery &&
           !orderStore.order.status_complete
         "
+        :isLoading="isAcceptLoading"
         @handleClick="acceptOrder"
         @handleUndo="undoAcceptOrder"
       />
@@ -22,6 +23,7 @@
           orderStore.order.status_delivery &&
           !orderStore.order.status_complete
         "
+        :isLoading="isDeliveryLoading"
         @handleClick="deliveryOrder"
         @handleUndo="undoDeliveryOrder"
       />
@@ -35,6 +37,7 @@
           orderStore.order.status_delivery &&
           orderStore.order.status_complete
         "
+        :isLoading="isCompleteLoading"
         @handleClick="completeOrder"
         @handleUndo="undoCompleteOrder"
       />
@@ -50,7 +53,7 @@
           v-if="isConfirmModalOpen"
           :isModalOpen="isMenuModalOpen"
           title="Подтвердить удаление"
-          :isLoading="isLoading"
+          :isLoading="isDeleteLoading"
           @yesClick="deleteOrder"
           @noClick="isConfirmModalOpen = false"
         />
@@ -64,13 +67,16 @@ const toast = useToast();
 const orderStore = useOrdersStore();
 const { date } = useDate();
 
-const isLoading = ref(false);
+const isAcceptLoading = ref(false);
+const isDeliveryLoading = ref(false);
+const isCompleteLoading = ref(false);
+const isDeleteLoading = ref(false);
 
 const isConfirmModalOpen = ref(false);
 
 const acceptOrder = async () => {
   try {
-    isLoading.value = true;
+    isAcceptLoading.value = true;
 
     const result = await orderStore.updateStatusAcceptOrder(date);
 
@@ -90,13 +96,13 @@ const acceptOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isAcceptLoading.value = false;
   }
 };
 
 const undoAcceptOrder = async () => {
   try {
-    isLoading.value = true;
+    isAcceptLoading.value = true;
 
     const result = await orderStore.updateStatusAcceptOrder(null);
 
@@ -116,13 +122,13 @@ const undoAcceptOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isAcceptLoading.value = false;
   }
 };
 
 const deliveryOrder = async () => {
   try {
-    isLoading.value = true;
+    isDeliveryLoading.value = true;
 
     const result = await orderStore.updateStatusDeliveryOrder(date);
 
@@ -142,13 +148,13 @@ const deliveryOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isDeliveryLoading.value = false;
   }
 };
 
 const undoDeliveryOrder = async () => {
   try {
-    isLoading.value = true;
+    isDeliveryLoading.value = true;
 
     const result = await orderStore.updateStatusDeliveryOrder(null);
 
@@ -168,13 +174,13 @@ const undoDeliveryOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isDeliveryLoading.value = false;
   }
 };
 
 const completeOrder = async () => {
   try {
-    isLoading.value = true;
+    isCompleteLoading.value = true;
 
     const result = await orderStore.updateStatusCompleteOrder(date);
 
@@ -194,13 +200,13 @@ const completeOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isCompleteLoading.value = false;
   }
 };
 
 const undoCompleteOrder = async () => {
   try {
-    isLoading.value = true;
+    isCompleteLoading.value = true;
 
     const result = await orderStore.updateStatusCompleteOrder(null);
 
@@ -220,13 +226,13 @@ const undoCompleteOrder = async () => {
   } catch (err) {
     console.log(err);
   } finally {
-    isLoading.value = false;
+    isCompleteLoading.value = false;
   }
 };
 
 const deleteOrder = async () => {
   try {
-    isLoading.value = true;
+    isDeleteLoading.value = true;
 
     const result = await orderStore.deleteOrder();
 
@@ -249,7 +255,7 @@ const deleteOrder = async () => {
     console.log(err);
   } finally {
     isConfirmModalOpen.value = false;
-    isLoading.value = false;
+    isDeleteLoading.value = false;
   }
 };
 </script>

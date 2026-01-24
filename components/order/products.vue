@@ -5,11 +5,13 @@
       :key="item.id"
       class="orderProducts__item"
     >
-      <img
-        :src="`https://pralinecakes-nuxt.vercel.app/${item.image_list_card}`"
-        :alt="item.name"
-        class="orderProducts__image"
-      />
+      <div class="orderProducts__imageBox">
+        <img
+          :src="`https://pralinecakes-nuxt.vercel.app/${item.image_list_card}`"
+          :alt="item.name"
+          class="orderProducts__image"
+        />
+      </div>
 
       <div class="orderProducts__block">
         <div class="orderProducts__details">
@@ -102,16 +104,23 @@ const { order } = defineProps(["order"]);
     padding-top: 5px;
   }
 
-  &__image {
+  &__imageBox {
     width: 100px;
-    height: 100%;
+    height: 78px;
     border-radius: var(--border-radius-s);
-    object-fit: cover;
+    background: var(--mask-white-primary);
+    overflow: hidden;
 
     @media (max-width: 767px) {
       width: 60px;
       height: 60px;
     }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__count {

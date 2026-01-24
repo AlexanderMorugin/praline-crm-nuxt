@@ -5,7 +5,8 @@
       :class="['buttonManager', { buttonManager_delete: name === 'delete' }]"
       @click="emit('handleClick')"
     >
-      <span class="buttonManager__title">
+      <LoaderButton v-if="isLoading" />
+      <span v-else class="buttonManager__title">
         {{
           name === "accept"
             ? "Принять"
@@ -32,6 +33,10 @@
         <IconUndo class="buttonManager__icon" />
       </button>
 
+      <div class="buttonManager__undoLoading">
+        <LoaderButton v-if="isLoading" />
+      </div>
+
       <span class="buttonManager__titleActive">{{
         name === "accept"
           ? "Принят"
@@ -49,10 +54,11 @@
 </template>
 
 <script setup>
-const { name, status, undoStatus } = defineProps([
+const { name, status, undoStatus, isLoading } = defineProps([
   "name",
   "status",
   "undoStatus",
+  "isLoading",
 ]);
 const emit = defineEmits(["handleClick", "handleUndo"]);
 </script>
@@ -135,6 +141,12 @@ const emit = defineEmits(["handleClick", "handleUndo"]);
     width: 16px;
     height: 16px;
     fill: var(--white-primary);
+  }
+
+  &__undoLoading {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
   }
 }
 </style>
