@@ -1,15 +1,28 @@
 <template>
   <ul class="orderManager">
-    <li v-for="button in managerButtons" :key="button.id">
+    <li>
       <ButtonManager
-        :title="button.title"
-        @handleClick="manageButtonClick(button.id)"
+        name="accept"
+        :status="orderStore.order.status_accept"
+        @handleClick="acceptOrder"
       />
-      <!-- <ButtonManager
-        :title="button.title"
-        :status="button.status "
-        @handleClick="manageButtonClick(button.id)"
-      /> -->
+    </li>
+    <li>
+      <ButtonManager
+        name="delivery"
+        :status="orderStore.order.status_delivery"
+        @handleClick="deliveryOrder"
+      />
+    </li>
+    <li>
+      <ButtonManager
+        name="complete"
+        :status="orderStore.order.status_complete"
+        @handleClick="completeOrder"
+      />
+    </li>
+    <li>
+      <ButtonManager name="delete" @handleClick="isConfirmModalOpen = true" />
     </li>
 
     <!-- Модалка подтверждения -->
@@ -31,48 +44,43 @@
 <script setup>
 const toast = useToast();
 const orderStore = useOrdersStore();
+const { date } = useDate();
 
 const isLoading = ref(false);
-const managerButtons = ref([
-  { id: 1, title: "Подтвердить", status: orderStore.order.status_confirm },
-  { id: 2, title: "Доставить", status: "delivery" },
-  { id: 3, title: "Завершить", status: "pending" },
-  { id: 4, title: "Удалить", status: "delete" },
-]);
 
 const isConfirmModalOpen = ref(false);
 
-const manageButtonClick = (id) => {
-  let today = new Date();
-  let current_date =
-    today.getDate() +
-    "." +
-    (today.getMonth() + 1) +
-    "." +
-    today.getFullYear() +
-    " " +
-    today.getHours() +
-    ":" +
-    today.getMinutes();
-
-  if (id === 1) {
-    confirmOrder(current_date);
-  }
-
-  if (id === 2) {
-    deliveryOrder(current_date);
-  }
-
-  if (id === 4) {
-    isConfirmModalOpen.value = true;
-  }
-};
-
-const deliveryOrder = async (date) => {
+const acceptOrder = async () => {
   try {
     isLoading.value = true;
 
-    const result = await orderStore.updateDeliveryOrderDate(date);
+    const result = await orderStore.updateStatusAcceptOrder(date);
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Заказ принять не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Заказ принят.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const deliveryOrder = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await orderStore.updateStatusDeliveryOrder(date);
 
     if (result.status.value === "error") {
       toast.error({
@@ -87,41 +95,35 @@ const deliveryOrder = async (date) => {
         message: "Доставка подтверждена.",
       });
     }
-
-    // return navigateTo("/orders");
   } catch (err) {
     console.log(err);
   } finally {
-    // isConfirmModalOpen.value = false;
     isLoading.value = false;
   }
 };
 
-const confirmOrder = async (date) => {
+const completeOrder = async () => {
   try {
     isLoading.value = true;
 
-    const result = await orderStore.updateConfirmOrderDate(date);
+    const result = await orderStore.updateStatusCompleteOrder(date);
 
     if (result.status.value === "error") {
       toast.error({
         title: "Ошибка!",
-        message: "Заказ подтвердить не удалось.",
+        message: "Завершение подтвердить не удалось.",
       });
     }
 
     if (result.status.value === "success") {
       toast.success({
         title: "Успешно!",
-        message: "Заказ подтвержден.",
+        message: "Заказ завершен.",
       });
     }
-
-    // return navigateTo("/orders");
   } catch (err) {
     console.log(err);
   } finally {
-    // isConfirmModalOpen.value = false;
     isLoading.value = false;
   }
 };
@@ -164,10 +166,7 @@ const deleteOrder = async () => {
 
   @media (max-width: 767px) {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  &__button {
-    border: 1px solid red;
+    gap: 20px;
   }
 }
 </style>

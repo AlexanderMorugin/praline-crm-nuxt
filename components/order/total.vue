@@ -100,7 +100,7 @@ const { order } = defineProps(["order"]);
 
   &__red {
     opacity: 1;
-    color: var(--red-primary);
+    color: var(--red-fourthly);
   }
 
   &__green {

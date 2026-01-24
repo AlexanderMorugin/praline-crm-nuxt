@@ -1,5 +1,21 @@
 <template>
-  <div class="orderCard">
+  <div
+    :class="[
+      'orderCard',
+      {
+        orderCard_new: !order.status_accept,
+      },
+      {
+        orderCard_accept: order.status_accept,
+      },
+      {
+        orderCard_delivery: order.status_delivery,
+      },
+      {
+        orderCard_complete: order.status_complete,
+      },
+    ]"
+  >
     <div class="orderCard__title">
       Заказ №
       <span class="orderCard__titleAccent">{{ order.order_number }}</span> от
@@ -10,7 +26,7 @@
     <OrderProducts :order="order" />
     <div class="line-solid" />
     <OrderTotal :order="order" />
-    <div class="test">{{ order }}</div>
+    <!-- <div class="test">{{ order }}</div> -->
   </div>
 </template>
 
@@ -29,6 +45,22 @@ const { order } = defineProps(["order"]);
 
   @media (max-width: 767px) {
     padding: 20px 10px;
+  }
+
+  &_new {
+    background: var(--red-thirdly);
+  }
+
+  &_accept {
+    background: var(--deep-blue-thirdly);
+  }
+
+  &_delivery {
+    background: var(--green-fifthly);
+  }
+
+  &_complete {
+    background: var(--deep-blue-fourthly);
   }
 
   &__title {

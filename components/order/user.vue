@@ -86,7 +86,7 @@ const { order } = defineProps(["order"]);
   }
 
   &__red {
-    color: var(--red-primary);
+    color: var(--red-fourthly);
   }
 
   &__green {

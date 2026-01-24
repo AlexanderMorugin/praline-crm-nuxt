@@ -1,5 +1,22 @@
 <template>
-  <NuxtLink :to="`/orders/${order.id}`" class="orderListCard">
+  <NuxtLink
+    :to="`/orders/${order.id}`"
+    :class="[
+      'orderListCard',
+      {
+        orderListCard_new: !order.status_accept,
+      },
+      {
+        orderListCard_accept: order.status_accept,
+      },
+      {
+        orderListCard_delivery: order.status_delivery,
+      },
+      {
+        orderListCard_complete: order.status_complete,
+      },
+    ]"
+  >
     <div class="orderListCard__block">
       <div class="orderListCard__blockTop">
         <div class="orderListCard__text">
@@ -57,7 +74,23 @@
 
     <div class="orderListCard__block">
       <div class="orderListCard__blockTop">
-        <span class="orderListCard__textDoubleAccent">Доставлен</span>
+        <span class="orderListCard__textDoubleAccent">
+          {{
+            order.status_accept &&
+            !order.status_delivery &&
+            !order.status_complete
+              ? "Принят"
+              : order.status_accept &&
+                order.status_delivery &&
+                !order.status_complete
+              ? "Доставляется"
+              : order.status_accept &&
+                order.status_delivery &&
+                order.status_complete
+              ? "Завершен"
+              : "Новый"
+          }}</span
+        >
       </div>
       <span class="orderListCard__text">{{ order.order_date }}</span>
     </div>
@@ -81,6 +114,22 @@ const { order } = defineProps(["order"]);
 
   &:hover {
     animation: jump 0.3s ease-in-out;
+  }
+
+  &_new {
+    background: var(--red-thirdly);
+  }
+
+  &_accept {
+    background: var(--deep-blue-thirdly);
+  }
+
+  &_delivery {
+    background: var(--green-fifthly);
+  }
+
+  &_complete {
+    background: var(--deep-blue-fourthly);
   }
 
   &__block {
@@ -137,7 +186,7 @@ const { order } = defineProps(["order"]);
   }
 
   &__red {
-    color: var(--red-primary);
+    color: var(--red-fourthly);
   }
 
   &__green {

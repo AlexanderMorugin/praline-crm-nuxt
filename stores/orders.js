@@ -31,11 +31,9 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     return result;
   };
 
-  const updateConfirmOrderDate = async (date) => {
-    // console.log(date);
-
-    const result = await useFetch("/api/orders/confirm-order", {
-      method: "POST",
+  const updateStatusAcceptOrder = async (date) => {
+    const result = await useFetch("/api/orders/accept-order", {
+      method: "PATCH",
       body: {
         id: order.value.id,
         status: date,
@@ -43,21 +41,19 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     });
 
     if (result.status.value === "success") {
-      order.value.status_confirm = date;
+      order.value.status_accept = date;
 
       orders.value = orders.value.map((item) =>
-        item.id === order.value.id ? { ...item, status_confirm: date } : item
+        item.id === order.value.id ? { ...item, status_accept: date } : item
       );
     }
 
     return result;
   };
 
-  const updateDeliveryOrderDate = async (date) => {
-    // console.log(date);
-
+  const updateStatusDeliveryOrder = async (date) => {
     const result = await useFetch("/api/orders/delivery-order", {
-      method: "POST",
+      method: "PATCH",
       body: {
         id: order.value.id,
         status: date,
@@ -69,6 +65,26 @@ export const useOrdersStore = defineStore("ordersStore", () => {
 
       orders.value = orders.value.map((item) =>
         item.id === order.value.id ? { ...item, status_delivery: date } : item
+      );
+    }
+
+    return result;
+  };
+
+  const updateStatusCompleteOrder = async (date) => {
+    const result = await useFetch("/api/orders/complete-order", {
+      method: "PATCH",
+      body: {
+        id: order.value.id,
+        status: date,
+      },
+    });
+
+    if (result.status.value === "success") {
+      order.value.status_complete = date;
+
+      orders.value = orders.value.map((item) =>
+        item.id === order.value.id ? { ...item, status_complete: date } : item
       );
     }
 
@@ -95,8 +111,9 @@ export const useOrdersStore = defineStore("ordersStore", () => {
     order,
     loadOrders,
     getOrder,
-    updateConfirmOrderDate,
-    updateDeliveryOrderDate,
+    updateStatusAcceptOrder,
+    updateStatusDeliveryOrder,
+    updateStatusCompleteOrder,
     deleteOrder,
   };
 });

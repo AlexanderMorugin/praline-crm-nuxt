@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const result = await db
     .update(orders)
-    .set({ status_delivery: status })
+    .set({ status_complete: status })
     .where(eq(orders.id, id));
 
   return result;

@@ -1,35 +1,51 @@
 <template>
   <div>
-    <!-- <div
-      v-if="status === 'pending' || status === 'done'"
-      class="buttonManager buttonManager_done"
-    >
-      {{ title }}
-    </div>
     <button
-      v-if="
-        status === 'cofirm' ||
-        status === 'deliver' ||
-        status === 'complete' ||
-        status === 'delete'
-      "
-      :class="['buttonManager', { buttonManager_delete: status === 'delete' }]"
+      v-if="!status"
+      :class="['buttonManager', { buttonManager_delete: name === 'delete' }]"
       @click="emit('handleClick')"
     >
-      {{ title }}
-    </button> -->
-
-    <button
-      :class="['buttonManager', { buttonManager_delete: status === 'delete' }]"
-      @click="emit('handleClick')"
-    >
-      {{ title }}
+      <span class="buttonManager__title">
+        {{
+          name === "accept"
+            ? "Принять"
+            : name === "delivery"
+            ? "Доставить"
+            : name === "complete"
+            ? "Завершить"
+            : name === "delete"
+            ? "Удалить"
+            : ""
+        }}</span
+      >
     </button>
+
+    <div
+      v-if="status && name !== 'delete'"
+      class="buttonManager buttonManager_active"
+    >
+      <button class="buttonManager__undo">
+        <IconUndo class="buttonManager__icon" />
+      </button>
+
+      <span class="buttonManager__titleActive">{{
+        name === "accept"
+          ? "Принят"
+          : name === "delivery"
+          ? "Доставляется"
+          : name === "complete"
+          ? "Завершен"
+          : ""
+      }}</span>
+      <span class="buttonManager__status">{{
+        name === "delete" ? "" : status
+      }}</span>
+    </div>
   </div>
 </template>
 
 <script setup>
-const { title, status } = defineProps(["title", "status"]);
+const { name, status } = defineProps(["name", "status"]);
 const emit = defineEmits(["handleClick"]);
 </script>
 
@@ -39,26 +55,47 @@ const emit = defineEmits(["handleClick"]);
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 48px;
+  min-height: 72px;
   border-radius: var(--border-radius-xs);
-  // border: 1px solid var(--border-primary);
   background: var(--green-fourthly);
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 16px;
-  letter-spacing: 1px;
-  color: var(--white-primary);
   padding: 10px;
 
   &:hover {
     background: var(--green-thirdly);
   }
 
-  &_done {
+  &_active {
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
     background: var(--mask-black-primary);
 
     &:hover {
       background: var(--mask-black-primary);
     }
+  }
+
+  &__title {
+    font-family: "Inter-Medium", sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: var(--white-primary);
+  }
+
+  &__titleActive {
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: var(--black-primary);
+  }
+
+  &__status {
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 12px;
+    text-align: center;
+    color: var(--black-primary);
   }
 
   &_delete {
@@ -67,6 +104,22 @@ const emit = defineEmits(["handleClick"]);
     &:hover {
       background: var(--red-secondary);
     }
+  }
+
+  &__undo {
+    position: absolute;
+    bottom: 5px;
+    right: 5%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--deep-blue-thirdly);
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    fill: var(--white-primary);
   }
 }
 </style>
