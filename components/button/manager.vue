@@ -24,7 +24,11 @@
       v-if="status && name !== 'delete'"
       class="buttonManager buttonManager_active"
     >
-      <button class="buttonManager__undo">
+      <button
+        v-if="undoStatus"
+        class="buttonManager__undo"
+        @click="emit('handleUndo')"
+      >
         <IconUndo class="buttonManager__icon" />
       </button>
 
@@ -45,8 +49,12 @@
 </template>
 
 <script setup>
-const { name, status } = defineProps(["name", "status"]);
-const emit = defineEmits(["handleClick"]);
+const { name, status, undoStatus } = defineProps([
+  "name",
+  "status",
+  "undoStatus",
+]);
+const emit = defineEmits(["handleClick", "handleUndo"]);
 </script>
 
 <style lang="scss" scoped>
@@ -55,10 +63,14 @@ const emit = defineEmits(["handleClick"]);
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 72px;
+  min-height: 60px;
   border-radius: var(--border-radius-xs);
   background: var(--green-fourthly);
   padding: 10px;
+
+  @media (max-width: 767px) {
+    min-height: 80px;
+  }
 
   &:hover {
     background: var(--green-thirdly);
@@ -67,7 +79,6 @@ const emit = defineEmits(["handleClick"]);
   &_active {
     position: relative;
     flex-direction: column;
-    justify-content: flex-start;
     gap: 6px;
     background: var(--mask-black-primary);
 
@@ -78,9 +89,10 @@ const emit = defineEmits(["handleClick"]);
 
   &__title {
     font-family: "Inter-Medium", sans-serif;
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: 2px;
     text-align: center;
+    text-transform: uppercase;
     color: var(--white-primary);
   }
 
@@ -108,8 +120,11 @@ const emit = defineEmits(["handleClick"]);
 
   &__undo {
     position: absolute;
-    bottom: 5px;
-    right: 5%;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 20px;
     height: 20px;
     border-radius: 50%;

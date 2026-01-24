@@ -4,21 +4,39 @@
       <ButtonManager
         name="accept"
         :status="orderStore.order.status_accept"
+        :undoStatus="
+          orderStore.order.status_accept &&
+          !orderStore.order.status_delivery &&
+          !orderStore.order.status_complete
+        "
         @handleClick="acceptOrder"
+        @handleUndo="undoAcceptOrder"
       />
     </li>
-    <li>
+    <li v-if="orderStore.order.status_accept">
       <ButtonManager
         name="delivery"
         :status="orderStore.order.status_delivery"
+        :undoStatus="
+          orderStore.order.status_accept &&
+          orderStore.order.status_delivery &&
+          !orderStore.order.status_complete
+        "
         @handleClick="deliveryOrder"
+        @handleUndo="undoDeliveryOrder"
       />
     </li>
-    <li>
+    <li v-if="orderStore.order.status_delivery">
       <ButtonManager
         name="complete"
         :status="orderStore.order.status_complete"
+        :undoStatus="
+          orderStore.order.status_accept &&
+          orderStore.order.status_delivery &&
+          orderStore.order.status_complete
+        "
         @handleClick="completeOrder"
+        @handleUndo="undoCompleteOrder"
       />
     </li>
     <li>
@@ -76,6 +94,32 @@ const acceptOrder = async () => {
   }
 };
 
+const undoAcceptOrder = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await orderStore.updateStatusAcceptOrder(null);
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Отмену подтвердить не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Отмена выполнена.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 const deliveryOrder = async () => {
   try {
     isLoading.value = true;
@@ -102,6 +146,32 @@ const deliveryOrder = async () => {
   }
 };
 
+const undoDeliveryOrder = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await orderStore.updateStatusDeliveryOrder(null);
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Отмену подтвердить не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Отмена выполнена.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 const completeOrder = async () => {
   try {
     isLoading.value = true;
@@ -119,6 +189,32 @@ const completeOrder = async () => {
       toast.success({
         title: "Успешно!",
         message: "Заказ завершен.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const undoCompleteOrder = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await orderStore.updateStatusCompleteOrder(null);
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Отмену подтвердить не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Отмена выполнена.",
       });
     }
   } catch (err) {
