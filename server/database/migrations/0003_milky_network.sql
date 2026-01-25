@@ -1,0 +1,1 @@
+ALTER TABLE "cakes" DROP COLUMN "cake_id";

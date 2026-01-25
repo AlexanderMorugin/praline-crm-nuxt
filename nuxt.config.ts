@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "~/assets/styles/global.scss",
     "~/assets/styles/_variables.scss",
     "~/assets/styles/_fonts.scss",
+    "~/assets/styles/_forms.scss",
   ],
   modules: ["@pinia/nuxt", "nuxt-toast"],
 });

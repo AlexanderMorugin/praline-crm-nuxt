@@ -38,3 +38,12 @@ export const orders = pgTable("orders", {
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
+
+export const cakes = pgTable("cakes", {
+  id: serial("id").primaryKey(),
+  title: text("title"),
+  slug: text("slug"),
+
+  createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
+});

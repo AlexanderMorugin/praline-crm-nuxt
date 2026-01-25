@@ -1,0 +1,1 @@
+ALTER TABLE "cakes" ADD COLUMN "slug" text;

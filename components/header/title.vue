@@ -8,6 +8,10 @@
       ? "Детали заказа"
       : route.path === "/cakes"
       ? "Торты"
+      : route.path === `/cakes/${route.params.slug}`
+      ? "Детали торта"
+      : route.path === "/cakes/add"
+      ? "Новый торт"
       : route.path === "/pastry"
       ? "Пирожные"
       : route.path === "/comments"

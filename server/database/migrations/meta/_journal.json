@@ -15,6 +15,34 @@
       "when": 1769181546346,
       "tag": "0001_misty_longshot",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769269955213,
+      "tag": "0002_steady_kylun",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1769350344131,
+      "tag": "0003_milky_network",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1769350372978,
+      "tag": "0004_next_thunderbolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1769354416701,
+      "tag": "0005_productive_raza",
+      "breakpoints": true
     }
   ]
 }
