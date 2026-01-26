@@ -2,8 +2,26 @@ import { defineStore } from "pinia";
 
 export interface ICake {
   id?: any;
-  title?: string;
   slug?: string;
+  title?: string;
+  description_short?: string;
+  description_one?: string;
+  description_two?: string;
+  description_three?: string;
+
+  meta_title?: string;
+  meta_description?: string;
+  meta_сanonical_url?: string;
+
+  weight?: number;
+  width?: number;
+  height?: number;
+
+  ingredients?: string;
+  protein?: string;
+  fat?: string;
+  carbohydrates?: string;
+  calories?: string;
 
   createdAt?: any;
   updatedAt?: any;
@@ -46,8 +64,26 @@ export const useCakesStore = defineStore("cakesStore", () => {
     const result = await useFetch("/api/cakes/create-title", {
       method: "POST",
       body: {
-        title: cakeTitleData.title,
         slug: cakeTitleData.slug,
+        title: cakeTitleData.title,
+        description_short: cakeTitleData.description_short,
+        description_one: cakeTitleData.description_one,
+        description_two: cakeTitleData.description_two,
+        description_three: cakeTitleData.description_three,
+
+        meta_title: cakeTitleData.meta_title,
+        meta_description: cakeTitleData.meta_description,
+        meta_сanonical_url: `http://localhost:3000/cakes/${cakeTitleData.slug}`,
+
+        weight: cakeTitleData.weight,
+        width: cakeTitleData.width,
+        height: cakeTitleData.height,
+
+        ingredients: cakeTitleData.ingredients,
+        protein: cakeTitleData.protein,
+        fat: cakeTitleData.fat,
+        carbohydrates: cakeTitleData.carbohydrates,
+        calories: cakeTitleData.calories,
       },
     });
 

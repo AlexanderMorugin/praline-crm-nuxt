@@ -5,6 +5,7 @@
         <span> {{ cake.id }}</span>
         <span> {{ cake.title }}</span>
         <span> {{ cake.slug }}</span>
+        <!-- <span> {{ cake.meta_title }}</span> -->
       </NuxtLink>
     </li>
   </ul>

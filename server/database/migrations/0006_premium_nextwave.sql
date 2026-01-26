@@ -1,0 +1,1 @@
+ALTER TABLE "cakes" ADD COLUMN "meta_title" text;

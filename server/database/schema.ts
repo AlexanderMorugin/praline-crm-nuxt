@@ -41,8 +41,31 @@ export const orders = pgTable("orders", {
 
 export const cakes = pgTable("cakes", {
   id: serial("id").primaryKey(),
-  title: text("title"),
   slug: text("slug"),
+  title: text("title"),
+  description_short: text("description_short"),
+  description_one: text("description_one"),
+  description_two: text("description_two"),
+  description_three: text("description_three"),
+
+  meta_title: text("meta_title"),
+  meta_description: text("meta_description"),
+  meta_сanonical_url: text("meta_сanonical_url"),
+
+  weight: integer("weight"),
+  width: integer("width"),
+  height: integer("height"),
+  expiration_date: integer("expiration_date"),
+  temperature: text("temperature"),
+
+  price: integer("price"),
+  discount: integer("discount"),
+
+  ingredients: text("ingredients"),
+  protein: text("protein"),
+  fat: text("fat"),
+  carbohydrates: text("carbohydrates"),
+  calories: text("calories"),
 
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),

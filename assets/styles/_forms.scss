@@ -6,6 +6,10 @@
   border: 1px solid var(--border-primary);
   border-radius: var(--border-radius-l);
   padding: 20px;
+
+  @media (max-width: 767px) {
+    padding: 20px 10px;
+  }
 }
 .form-title {
   font-family: "Inter-SemiBold", sans-serif;
@@ -13,6 +17,12 @@
   line-height: 38px;
   color: var(--red-thirdly);
   // letter-spacing: 1px;
+}
+.form-subtitle {
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--deep-blue-fourthly);
 }
 .form-field {
   position: relative;
@@ -25,10 +35,6 @@
   font-size: 14px;
   color: var(--deep-blue-thirdly);
   padding-bottom: 5px;
-
-  // @media (max-width: 1024px) {
-  //   font-size: 14px;
-  // }
 }
 .form-input {
   width: 100%;
@@ -47,13 +53,12 @@
   font-family: "Inter-Regular", sans-serif;
   font-size: 16px;
   color: var(--black-primary);
-  // background: var(--white-primary);
   outline: 0;
   border: 1px solid var(--deep-blue-thirdly);
 }
 .form-input::placeholder {
   font-family: "Inter-Regular", sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   color: var(--mask-black-secondary);
 }
 .form-input:focus::placeholder {
@@ -72,4 +77,9 @@
   &:hover {
     fill: var(--deep-blue-thirdly);
   }
+}
+.mark {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  color: var(--mask-black-thirdly);
 }

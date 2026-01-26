@@ -43,6 +43,62 @@
       "when": 1769354416701,
       "tag": "0005_productive_raza",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1769424163224,
+      "tag": "0006_premium_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1769424860731,
+      "tag": "0007_first_white_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1769426092365,
+      "tag": "0008_broad_union_jack",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1769430018372,
+      "tag": "0009_parched_fixer",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1769430239213,
+      "tag": "0010_white_roland_deschain",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1769430811431,
+      "tag": "0011_oval_bastion",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1769431689002,
+      "tag": "0012_romantic_ulik",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1769433518807,
+      "tag": "0013_last_silhouette",
+      "breakpoints": true
     }
   ]
 }
