@@ -1,7 +1,10 @@
 <template>
   <div class="cakeCard">
+    <ProductCardTitle />
+    <FormProductTitleUpdate />
+    <!-- <ProductCardTitle /> -->
     <!-- {{ cakesStore.cake }} -->
-    <span>cake.id: {{ cakesStore.cake[0].id }}</span>
+    <!-- <span>cake.id: {{ cakesStore.cake[0].id }}</span>
     <span>cake.slug: {{ cakesStore.cake[0].slug }}</span>
     <span>cake.title: {{ cakesStore.cake[0].title }}</span>
     <span
@@ -31,6 +34,9 @@
     <span>cake.fat: {{ cakesStore.cake[0].fat }}</span>
     <span>cake.carbohydrates: {{ cakesStore.cake[0].carbohydrates }}</span>
     <span>cake.calories: {{ cakesStore.cake[0].calories }}</span>
+
+    <span>Создан: {{ cakesStore.cake[0].createdAt }}</span>
+    <span>Редактирован: {{ cakesStore.cake[0].updatedAt }}</span> -->
 
     <button @click="deleteCake">Удалить</button>
   </div>
@@ -69,6 +75,6 @@ const deleteCake = async () => {
 .cakeCard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 </style>

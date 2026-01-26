@@ -10,6 +10,23 @@
   @media (max-width: 767px) {
     padding: 20px 10px;
   }
+
+  &_submited {
+    background: var(--deep-blue-fourthly);
+  }
+}
+.form-submited-text {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--white-primary);
+
+  &_noAccent {
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--mask-white-primary);
+  }
 }
 .form-title {
   font-family: "Inter-SemiBold", sans-serif;

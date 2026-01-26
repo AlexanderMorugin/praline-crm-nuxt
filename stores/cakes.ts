@@ -67,23 +67,24 @@ export const useCakesStore = defineStore("cakesStore", () => {
         slug: cakeTitleData.slug,
         title: cakeTitleData.title,
         description_short: cakeTitleData.description_short,
-        description_one: cakeTitleData.description_one,
-        description_two: cakeTitleData.description_two,
-        description_three: cakeTitleData.description_three,
 
-        meta_title: cakeTitleData.meta_title,
-        meta_description: cakeTitleData.meta_description,
-        meta_сanonical_url: `http://localhost:3000/cakes/${cakeTitleData.slug}`,
+        // description_one: cakeTitleData.description_one,
+        // description_two: cakeTitleData.description_two,
+        // description_three: cakeTitleData.description_three,
 
-        weight: cakeTitleData.weight,
-        width: cakeTitleData.width,
-        height: cakeTitleData.height,
+        // meta_title: cakeTitleData.meta_title,
+        // meta_description: cakeTitleData.meta_description,
+        // meta_сanonical_url: `http://localhost:3000/cakes/${cakeTitleData.slug}`,
 
-        ingredients: cakeTitleData.ingredients,
-        protein: cakeTitleData.protein,
-        fat: cakeTitleData.fat,
-        carbohydrates: cakeTitleData.carbohydrates,
-        calories: cakeTitleData.calories,
+        // weight: cakeTitleData.weight,
+        // width: cakeTitleData.width,
+        // height: cakeTitleData.height,
+
+        // ingredients: cakeTitleData.ingredients,
+        // protein: cakeTitleData.protein,
+        // fat: cakeTitleData.fat,
+        // carbohydrates: cakeTitleData.carbohydrates,
+        // calories: cakeTitleData.calories,
       },
     });
 

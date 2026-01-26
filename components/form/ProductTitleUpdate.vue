@@ -1,6 +1,19 @@
 <template>
-  <form @submit.prevent="submitCakeTitle" class="form-flex">
-    <div class="form-title">Шаг первый</div>
+  <form
+    @submit.prevent="updateProductTitle"
+    class="form-flex form-flex_submited"
+  >
+    <div class="form-submited-text">
+      <span class="form-submited-text_noAccent">ID: </span
+      >{{ cakesStore.cake[0].id }}
+    </div>
+
+    <div class="form-submited-text">
+      <span class="form-submited-text_noAccent"
+        >Адрес: http://localhost:3000/cakes/</span
+      >{{ cakesStore.cake[0].slug }}
+    </div>
+
     <FormInput
       label="Адрес на английском без пробелов * "
       type="text"
@@ -18,7 +31,7 @@
       @clearInput="titleField = null"
     />
     <FormInput
-      label="Короткое описание * "
+      label="Краткое описание * "
       type="text"
       name="descriptionShortField"
       placeholder="1 или 2 коротких предложения"
@@ -38,6 +51,7 @@
 </template>
 
 <script setup>
+const toast = useToast();
 const cakesStore = useCakesStore();
 
 const isLoading = ref(false);
@@ -45,7 +59,7 @@ const slugField = ref("");
 const titleField = ref("");
 const descriptionShortField = ref("");
 
-const submitCakeTitle = async () => {
+const updateProductTitle = async () => {
   try {
     isLoading.value = true;
 
@@ -56,6 +70,22 @@ const submitCakeTitle = async () => {
     };
 
     const result = await cakesStore.createCakeTitle(cakeTitleData);
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Создать продукт не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Продукт создан.",
+      });
+
+      return navigateTo(`/cakes/${slugField.value.toLowerCase().trim()}`);
+    }
   } catch (error) {
     console.log(error);
   } finally {
