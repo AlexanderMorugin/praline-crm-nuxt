@@ -1,7 +1,7 @@
 <template>
-  <form @submit.prevent="updateProductTitle" class="form-flex">
+  <form @submit.prevent="updateProductMeta" class="form-flex">
     <div class="form-title">
-      Шаг 1 <span class="form-title form-title_second">(Название)</span>
+      Шаг 3 <span class="form-title form-title_second">(Мета данные)</span>
     </div>
 
     <button v-if="!isFormEdit" class="form-top-button form-top-button_right">
@@ -13,43 +13,35 @@
     </button>
 
     <div class="form-submited-text">
-      <span class="form-submited-text-noAccent">ID: </span
-      >{{ cakesStore.cake[0].id }}
-    </div>
-
-    <div class="form-submited-text">
-      <span class="form-submited-text-noAccent"
-        >Адрес: http://localhost:3020/cakes/</span
-      >{{ cakesStore.cake[0].slug }}
+      <span class="form-submited-text-noAccent">Canonical URL: </span
+      >{{ cakesStore.cake[0].meta_сanonical_url }}
     </div>
 
     <FormInput
-      label="Наименование * "
+      label="Meta Title"
       type="text"
-      name="titleField"
-      placeholder="Название продукта"
-      v-model:value="titleField"
-      @clearInput="titleField = null"
+      name="metaTitleField"
+      placeholder="Meta Title продукта"
+      v-model:value="metaTitleField"
+      @clearInput="metaTitleField = null"
       :isFormEdit="isFormEdit"
     />
     <FormInput
-      label="Краткое описание * "
+      label="Meta Description"
       type="text"
-      name="descriptionShortField"
-      placeholder="1 или 2 коротких предложения"
-      v-model:value="descriptionShortField"
-      @clearInput="descriptionShortField = null"
+      name="metaDescriptionField"
+      placeholder="Meta Description продукта"
+      v-model:value="metaDescriptionField"
+      @clearInput="metaDescriptionField = null"
       :isFormEdit="isFormEdit"
     />
 
     <FormSubmit
       v-if="isFormEdit"
       :isLoading="isLoading"
-      :isActive="titleField && descriptionShortField"
+      isActive="true"
       place="product"
     />
-
-    <div class="mark">* - поля обязательны для заполнения</div>
   </form>
 </template>
 
@@ -59,19 +51,21 @@ const cakesStore = useCakesStore();
 
 const isFormEdit = ref(false);
 const isLoading = ref(false);
-const titleField = ref(cakesStore.cake[0].title);
-const descriptionShortField = ref(cakesStore.cake[0].description_short);
+const metaTitleField = ref(cakesStore.cake[0].meta_title);
+const metaDescriptionField = ref(cakesStore.cake[0].meta_description);
 
-const updateProductTitle = async () => {
+const updateProductMeta = async () => {
   try {
     isLoading.value = true;
 
     const productData = {
-      title: titleField.value.trim(),
-      description_short: descriptionShortField.value.trim(),
+      meta_title: metaTitleField.value ? metaTitleField.value.trim() : null,
+      meta_description: metaDescriptionField.value
+        ? metaDescriptionField.value.trim()
+        : null,
     };
 
-    const result = await cakesStore.updateCakeTitle(productData);
+    const result = await cakesStore.updateProductMeta(productData);
 
     if (result.status.value === "error") {
       toast.error({
@@ -95,3 +89,11 @@ const updateProductTitle = async () => {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.formAddingProduct {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+</style>

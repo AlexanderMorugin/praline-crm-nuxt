@@ -1,8 +1,9 @@
 <template>
   <div class="cakeCard">
-    <!-- <ProductCardTitle /> -->
     <FormProductTitleUpdate />
-    <!-- <ProductCardTitle /> -->
+    <FormProductDescriptionUpdate />
+    <FormProductMetaUpdate />
+
     <!-- {{ cakesStore.cake }} -->
     <!-- <span>cake.id: {{ cakesStore.cake[0].id }}</span>
     <span>cake.slug: {{ cakesStore.cake[0].slug }}</span>

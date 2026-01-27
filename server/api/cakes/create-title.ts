@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
     slug: body.slug.toLowerCase(),
     title: body.title,
     description_short: body.description_short,
+    meta_сanonical_url: body.meta_сanonical_url.toLowerCase(),
 
     // description_one: body.description_one,
     // description_two: body.description_two,

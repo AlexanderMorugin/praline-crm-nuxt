@@ -1,6 +1,8 @@
 <template>
   <form @submit.prevent="createProductTitle" class="form-flex">
-    <div class="form-title">Шаг первый</div>
+    <div class="form-title">
+      Шаг 1 <span class="form-title form-title_second">(Название)</span>
+    </div>
     <FormInput
       label="Адрес на английском без пробелов * "
       type="text"
@@ -53,13 +55,13 @@ const createProductTitle = async () => {
   try {
     isLoading.value = true;
 
-    const cakeTitleData = {
+    const productData = {
       slug: slugField.value.trim(),
       title: titleField.value.trim(),
       description_short: descriptionShortField.value.trim(),
     };
 
-    const result = await cakesStore.createCakeTitle(cakeTitleData);
+    const result = await cakesStore.createCakeTitle(productData);
 
     if (result.status.value === "error") {
       toast.error({

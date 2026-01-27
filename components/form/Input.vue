@@ -13,7 +13,9 @@
       class="form-input"
     />
     <div v-else class="form-input-submited">
-      <span class="form-input-text-submited">{{ value }}</span>
+      <span class="form-input-text-submited">{{
+        value ? value : "Пусто"
+      }}</span>
     </div>
 
     <IconClose

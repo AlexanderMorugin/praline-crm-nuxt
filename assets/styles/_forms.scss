@@ -29,6 +29,11 @@
   font-size: 22px;
   line-height: 38px;
   color: var(--white-primary);
+
+  &_second {
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 18px;
+  }
 }
 .form-subtitle {
   font-family: "Inter-SemiBold", sans-serif;
@@ -109,21 +114,36 @@
   font-size: 14px;
   color: var(--mask-white-secondary);
 }
-.form-button-edit {
+.form-top-button {
   position: absolute;
   top: 20px;
-  right: 20px;
-  width: 24px;
-  height: 24px;
-  fill: var(--mask-white-primary);
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--mask-blue-thirdly);
+  border-radius: 50%;
   transition: 0.2s ease;
 
   &:hover {
-    fill: var(--white-primary);
+    background: var(--red-secondary);
   }
 
-  @media (max-width: 767px) {
-    right: 10px;
+  &_right {
+    right: 20px;
+
+    @media (max-width: 767px) {
+      right: 10px;
+    }
   }
+
+  &_left {
+    right: 70px;
+  }
+}
+.form-button-edit {
+  width: 24px;
+  height: 24px;
+  fill: var(--white-primary);
 }
