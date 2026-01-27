@@ -52,6 +52,8 @@ const emit = defineEmits(["handleClick"]);
     }
 
     @media (max-width: 767px) {
+      width: 30px;
+      height: 30px;
       right: 10px;
     }
   }
@@ -78,6 +80,11 @@ const emit = defineEmits(["handleClick"]);
     width: 24px;
     height: 24px;
     fill: var(--white-primary);
+
+    @media (max-width: 767px) {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 </style>

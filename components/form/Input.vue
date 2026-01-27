@@ -19,7 +19,7 @@
     </div>
 
     <IconClose
-      v-if="value && isFormEdit"
+      v-if="value && isFormEdit && type === 'text'"
       class="form-clear"
       @click="$emit('clearInput')"
     />

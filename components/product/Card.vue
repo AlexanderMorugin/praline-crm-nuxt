@@ -3,6 +3,7 @@
     <FormProductTitleUpdate />
     <FormProductDescriptionUpdate />
     <FormProductMetaUpdate />
+    <!-- <FormProductSizesUpdate /> -->
 
     <!-- {{ cakesStore.cake }} -->
     <!-- <span>cake.id: {{ cakesStore.cake[0].id }}</span>
