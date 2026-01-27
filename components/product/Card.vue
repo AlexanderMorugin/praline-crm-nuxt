@@ -1,6 +1,6 @@
 <template>
   <div class="cakeCard">
-    <ProductCardTitle />
+    <!-- <ProductCardTitle /> -->
     <FormProductTitleUpdate />
     <!-- <ProductCardTitle /> -->
     <!-- {{ cakesStore.cake }} -->

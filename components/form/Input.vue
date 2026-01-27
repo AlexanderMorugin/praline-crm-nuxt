@@ -3,6 +3,7 @@
     <label :for="name" class="form-label">{{ label }}</label>
 
     <input
+      v-if="isFormEdit"
       :type="type"
       :id="name"
       :name="name"
@@ -11,18 +12,26 @@
       @input="updateValue"
       class="form-input"
     />
+    <div v-else class="form-input-submited">
+      <span class="form-input-text-submited">{{ value }}</span>
+    </div>
 
-    <IconClose v-if="value" class="form-clear" @click="$emit('clearInput')" />
+    <IconClose
+      v-if="value && isFormEdit"
+      class="form-clear"
+      @click="$emit('clearInput')"
+    />
   </div>
 </template>
 
 <script setup>
-const { label, type, name, placeholder, value } = defineProps([
+const { label, type, name, placeholder, value, isFormEdit } = defineProps([
   "label",
   "type",
   "name",
   "placeholder",
   "value",
+  "isFormEdit",
 ]);
 
 const emit = defineEmits(["update:value", "clearInput"]);

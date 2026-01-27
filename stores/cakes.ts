@@ -93,6 +93,31 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const updateCakeTitle = async (cakeTitleData: ICake) => {
+    const result = await useFetch("/api/cakes/update-title", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        title: cakeTitleData.title,
+        description_short: cakeTitleData.description_short,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              title: cakeTitleData.title,
+              description_short: cakeTitleData.description_short,
+            }
+          : item
+      );
+    }
+
+    return result;
+  };
+
   const deleteCake = async () => {
     const result = await useFetch("/api/cakes/delete-cake", {
       method: "DELETE",
@@ -104,5 +129,13 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
-  return { cakes, cake, loadCakes, getCake, createCakeTitle, deleteCake };
+  return {
+    cakes,
+    cake,
+    loadCakes,
+    getCake,
+    createCakeTitle,
+    updateCakeTitle,
+    deleteCake,
+  };
 });

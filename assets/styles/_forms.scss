@@ -1,8 +1,9 @@
 .form-flex {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: var(--gradient-secondary);
+  background: var(--gradient-thirdly);
   border: 1px solid var(--border-primary);
   border-radius: var(--border-radius-l);
   padding: 20px;
@@ -10,30 +11,24 @@
   @media (max-width: 767px) {
     padding: 20px 10px;
   }
-
-  &_submited {
-    background: var(--deep-blue-fourthly);
-  }
 }
 .form-submited-text {
   font-family: "Inter-Regular", sans-serif;
   font-size: 14px;
   line-height: 24px;
   color: var(--white-primary);
-
-  &_noAccent {
-    font-family: "Inter-Regular", sans-serif;
-    font-size: 14px;
-    line-height: 24px;
-    color: var(--mask-white-primary);
-  }
+}
+.form-submited-text-noAccent {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--mask-white-secondary);
 }
 .form-title {
   font-family: "Inter-SemiBold", sans-serif;
   font-size: 22px;
   line-height: 38px;
-  color: var(--red-thirdly);
-  // letter-spacing: 1px;
+  color: var(--white-primary);
 }
 .form-subtitle {
   font-family: "Inter-SemiBold", sans-serif;
@@ -50,7 +45,7 @@
 .form-label {
   font-family: "Inter-Regular", sans-serif;
   font-size: 14px;
-  color: var(--deep-blue-thirdly);
+  color: var(--mask-white-secondary);
   padding-bottom: 5px;
 }
 .form-input {
@@ -81,6 +76,20 @@
 .form-input:focus::placeholder {
   color: transparent;
 }
+.form-input-submited {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding-left: 12px;
+  padding-right: 40px;
+}
+.form-input-text-submited {
+  font-family: "Inter-SemiBold", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--white-primary);
+}
 .form-clear {
   position: absolute;
   top: 30px;
@@ -98,5 +107,23 @@
 .mark {
   font-family: "Inter-Regular", sans-serif;
   font-size: 14px;
-  color: var(--mask-black-thirdly);
+  color: var(--mask-white-secondary);
+}
+.form-button-edit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  fill: var(--mask-white-primary);
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    fill: var(--white-primary);
+  }
+
+  @media (max-width: 767px) {
+    right: 10px;
+  }
 }

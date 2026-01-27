@@ -8,6 +8,7 @@
       placeholder="napoleon - например"
       v-model:value="slugField"
       @clearInput="slugField = null"
+      isFormEdit="true"
     />
     <FormInput
       label="Наименование * "
@@ -16,6 +17,7 @@
       placeholder="Название продукта"
       v-model:value="titleField"
       @clearInput="titleField = null"
+      isFormEdit="true"
     />
     <FormInput
       label="Краткое описание * "
@@ -24,6 +26,7 @@
       placeholder="1 или 2 коротких предложения"
       v-model:value="descriptionShortField"
       @clearInput="descriptionShortField = null"
+      isFormEdit="true"
     />
 
     <FormSubmit
@@ -80,11 +83,3 @@ const createProductTitle = async () => {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.formAddingProduct {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-</style>
