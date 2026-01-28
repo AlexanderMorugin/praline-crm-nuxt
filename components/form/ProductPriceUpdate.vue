@@ -1,15 +1,38 @@
 <template>
-  <form @submit.prevent="updateProductPrice" class="form-flex">
+  <form
+    @submit.prevent="updateProductPrice"
+    class="form-flex"
+    :class="isFormOpen ? 'form-flex_open' : ''"
+  >
     <div class="form-title">
       Шаг 5 <span class="form-title form-title_second">(Цена)</span>
     </div>
 
-    <button v-if="!isFormEdit" class="form-top-button form-top-button_right">
+    <button
+      type="button"
+      v-if="!isFormEdit && isFormOpen"
+      class="form-top-button form-top-button_right"
+    >
       <IconEdit @click="isFormEdit = true" class="form-button-edit" />
     </button>
 
-    <button v-if="isFormEdit" class="form-top-button form-top-button_left">
+    <button
+      type="button"
+      v-if="isFormEdit && isFormOpen"
+      class="form-top-button form-top-button_left"
+    >
       <IconUndo @click="isFormEdit = false" class="form-button-edit" />
+    </button>
+
+    <button
+      type="button"
+      class="form-bottom-button"
+      :class="isFormOpen ? 'form-bottom-button_open' : ''"
+    >
+      <IconArrowIos
+        @click="isFormOpen = !isFormOpen"
+        class="form-button-edit"
+      />
     </button>
 
     <div class="form-weight">
@@ -44,6 +67,7 @@
 const toast = useToast();
 const cakesStore = useCakesStore();
 
+const isFormOpen = ref(false);
 const isFormEdit = ref(false);
 const isLoading = ref(false);
 const priceField = ref(cakesStore.cake[0].price);

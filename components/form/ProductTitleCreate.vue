@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="createProductTitle" class="form-flex">
+  <form @submit.prevent="createProductTitle" class="form-flex form-flex_open">
     <div class="form-title">
       Шаг 1 <span class="form-title form-title_second">(Название)</span>
     </div>
@@ -37,7 +37,7 @@
     />
 
     <div class="mark">
-      * - поля должны быть уникальными и они обязательны для заполнения
+      * поля должны быть уникальными и они обязательны для заполнения
     </div>
   </form>
 </template>
