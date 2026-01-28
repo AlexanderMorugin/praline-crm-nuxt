@@ -92,13 +92,13 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
-  const updateCakeTitle = async (productData: ICake) => {
+  const updateCakeTitle = async (formData: ICake) => {
     const result = await useFetch("/api/cakes/update-title", {
       method: "PATCH",
       body: {
         id: cake.value[0].id,
-        title: productData.title,
-        description_short: productData.description_short,
+        title: formData.title,
+        description_short: formData.description_short,
       },
     });
 
@@ -107,8 +107,8 @@ export const useCakesStore = defineStore("cakesStore", () => {
         item.id === cake.value[0].id
           ? {
               ...item,
-              title: productData.title,
-              description_short: productData.description_short,
+              title: formData.title,
+              description_short: formData.description_short,
             }
           : item
       );
@@ -117,14 +117,14 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
-  const updateCakeDescription = async (productData: ICake) => {
+  const updateCakeDescription = async (formData: ICake) => {
     const result = await useFetch("/api/cakes/update-description", {
       method: "PATCH",
       body: {
         id: cake.value[0].id,
-        description_one: productData.description_one,
-        description_two: productData.description_two,
-        description_three: productData.description_three,
+        description_one: formData.description_one,
+        description_two: formData.description_two,
+        description_three: formData.description_three,
       },
     });
 
@@ -133,8 +133,8 @@ export const useCakesStore = defineStore("cakesStore", () => {
         item.id === cake.value[0].id
           ? {
               ...item,
-              title: productData.title,
-              description_short: productData.description_short,
+              title: formData.title,
+              description_short: formData.description_short,
             }
           : item
       );
@@ -143,13 +143,13 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
-  const updateProductMeta = async (productData: ICake) => {
+  const updateProductMeta = async (formData: ICake) => {
     const result = await useFetch("/api/cakes/update-meta", {
       method: "PATCH",
       body: {
         id: cake.value[0].id,
-        meta_title: productData.meta_title,
-        meta_description: productData.meta_description,
+        meta_title: formData.meta_title,
+        meta_description: formData.meta_description,
       },
     });
 
@@ -158,8 +158,35 @@ export const useCakesStore = defineStore("cakesStore", () => {
         item.id === cake.value[0].id
           ? {
               ...item,
-              meta_title: productData.meta_title,
-              meta_description: productData.meta_description,
+              meta_title: formData.meta_title,
+              meta_description: formData.meta_description,
+            }
+          : item
+      );
+    }
+
+    return result;
+  };
+
+  const updateProductSizes = async (formData: ICake) => {
+    const result = await useFetch("/api/cakes/update-sizes", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        weight: formData.weight,
+        width: formData.width,
+        height: formData.height,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              weight: formData.weight,
+              width: formData.width,
+              height: formData.height,
             }
           : item
       );
@@ -188,6 +215,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateCakeTitle,
     updateCakeDescription,
     updateProductMeta,
+    updateProductSizes,
     deleteCake,
   };
 });

@@ -55,13 +55,13 @@ const createProductTitle = async () => {
   try {
     isLoading.value = true;
 
-    const productData = {
+    const formData = {
       slug: slugField.value.trim(),
       title: titleField.value.trim(),
       description_short: descriptionShortField.value.trim(),
     };
 
-    const result = await cakesStore.createCakeTitle(productData);
+    const result = await cakesStore.createCakeTitle(formData);
 
     if (result.status.value === "error") {
       toast.error({

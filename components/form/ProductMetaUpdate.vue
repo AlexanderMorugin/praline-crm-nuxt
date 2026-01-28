@@ -58,14 +58,14 @@ const updateProductMeta = async () => {
   try {
     isLoading.value = true;
 
-    const productData = {
+    const formData = {
       meta_title: metaTitleField.value ? metaTitleField.value.trim() : null,
       meta_description: metaDescriptionField.value
         ? metaDescriptionField.value.trim()
         : null,
     };
 
-    const result = await cakesStore.updateProductMeta(productData);
+    const result = await cakesStore.updateProductMeta(formData);
 
     if (result.status.value === "error") {
       toast.error({

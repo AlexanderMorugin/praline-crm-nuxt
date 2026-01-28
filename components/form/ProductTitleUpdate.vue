@@ -66,12 +66,12 @@ const updateProductTitle = async () => {
   try {
     isLoading.value = true;
 
-    const productData = {
+    const formData = {
       title: titleField.value.trim(),
       description_short: descriptionShortField.value.trim(),
     };
 
-    const result = await cakesStore.updateCakeTitle(productData);
+    const result = await cakesStore.updateCakeTitle(formData);
 
     if (result.status.value === "error") {
       toast.error({

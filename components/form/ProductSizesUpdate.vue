@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="updateProductDescription" class="form-flex">
+  <form @submit.prevent="updateProductSizes" class="form-flex">
     <div class="form-title">
       Шаг 4 <span class="form-title form-title_second">(Размеры)</span>
     </div>
@@ -12,7 +12,7 @@
       <IconUndo @click="isFormEdit = false" class="form-button-edit" />
     </button>
 
-    <div class="form-grid">
+    <div class="form-weight">
       <FormInput
         label="Вес (гр)"
         type="number"
@@ -22,7 +22,7 @@
         :isFormEdit="isFormEdit"
       />
       <FormInput
-        label="W (см)"
+        label="Шир. (см)"
         type="number"
         name="widthField"
         placeholder="Цифры"
@@ -30,7 +30,7 @@
         :isFormEdit="isFormEdit"
       />
       <FormInput
-        label="H (см)"
+        label="Выс. (см)"
         type="number"
         name="heightField"
         placeholder="Цифры"
@@ -58,23 +58,17 @@ const weightField = ref(cakesStore.cake[0].weight);
 const widthField = ref(cakesStore.cake[0].width);
 const heightField = ref(cakesStore.cake[0].height);
 
-const updateProductDescription = async () => {
+const updateProductSizes = async () => {
   try {
     isLoading.value = true;
 
-    const productData = {
-      description_one: descriptionOneField.value
-        ? descriptionOneField.value.trim()
-        : null,
-      description_two: descriptionTwoField.value
-        ? descriptionTwoField.value.trim()
-        : null,
-      description_three: descriptionThreeField.value
-        ? descriptionThreeField.value.trim()
-        : null,
+    const formData = {
+      weight: weightField.value ? weightField.value : null,
+      width: widthField.value ? widthField.value : null,
+      height: heightField.value ? heightField.value : null,
     };
 
-    const result = await cakesStore.updateCakeDescription(productData);
+    const result = await cakesStore.updateProductSizes(formData);
 
     if (result.status.value === "error") {
       toast.error({

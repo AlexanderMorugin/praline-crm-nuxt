@@ -63,7 +63,7 @@ const updateProductDescription = async () => {
   try {
     isLoading.value = true;
 
-    const productData = {
+    const formData = {
       description_one: descriptionOneField.value
         ? descriptionOneField.value.trim()
         : null,
@@ -75,7 +75,7 @@ const updateProductDescription = async () => {
         : null,
     };
 
-    const result = await cakesStore.updateCakeDescription(productData);
+    const result = await cakesStore.updateCakeDescription(formData);
 
     if (result.status.value === "error") {
       toast.error({
