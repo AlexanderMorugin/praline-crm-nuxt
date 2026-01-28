@@ -17,6 +17,9 @@ export interface ICake {
   width?: number;
   height?: number;
 
+  price?: number;
+  discount?: number;
+
   ingredients?: string;
   protein?: string;
   fat?: string;
@@ -195,6 +198,31 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const updateProductPrice = async (formData: ICake) => {
+    const result = await useFetch("/api/cakes/update-price", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        price: formData.price,
+        discount: formData.discount,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              price: formData.price,
+              discount: formData.discount,
+            }
+          : item
+      );
+    }
+
+    return result;
+  };
+
   const deleteCake = async () => {
     const result = await useFetch("/api/cakes/delete-cake", {
       method: "DELETE",
@@ -216,6 +244,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateCakeDescription,
     updateProductMeta,
     updateProductSizes,
+    updateProductPrice,
     deleteCake,
   };
 });
