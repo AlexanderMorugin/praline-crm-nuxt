@@ -1,10 +1,10 @@
 <template>
   <form
-    @submit.prevent="updateProductMeta"
+    @submit.prevent="updateProductVisibility"
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
-    <div class="form-title">Мета данные</div>
+    <div class="form-title">Видимость</div>
 
     <button
       type="button"
@@ -33,29 +33,38 @@
       />
     </button>
 
-    <div class="form-submited-text">
-      <span class="form-submited-text-noAccent">Canonical URL: </span
-      >{{ cakesStore.cake[0].meta_сanonical_url }}
+    <span class="form-submited-text"
+      >Переключатель видимости товара на сайте</span
+    >
+
+    <div v-if="isFormEdit" class="form-visibility">
+      <div class="form-field-radio">
+        <label class="form-label">Вкл</label>
+        <input
+          type="radio"
+          name="visibility"
+          :checked="visibilityField"
+          class="form-button-radio"
+          @click="visibilityField = true"
+        />
+      </div>
+      <div class="form-field-radio">
+        <label class="form-label">Выкл</label>
+        <input
+          type="radio"
+          name="visibility"
+          :checked="!visibilityField"
+          class="form-button-radio"
+          @click="visibilityField = false"
+        />
+      </div>
     </div>
 
-    <FormInput
-      label="Meta Title"
-      type="text"
-      name="metaTitleField"
-      placeholder="Meta Title продукта"
-      v-model:value="metaTitleField"
-      @clearInput="metaTitleField = null"
-      :isFormEdit="isFormEdit"
-    />
-    <FormTextarea
-      label="Meta Description"
-      type="text"
-      name="metaDescriptionField"
-      placeholder="Meta Description продукта"
-      v-model:value="metaDescriptionField"
-      @clearInput="metaDescriptionField = null"
-      :isFormEdit="isFormEdit"
-    />
+    <div v-else class="form-input-submited">
+      <span class="form-input-text-submited"
+        >Сейчас {{ visibilityField ? "виден" : "не виден" }}</span
+      >
+    </div>
 
     <FormSubmit
       v-if="isFormEdit"
@@ -73,21 +82,15 @@ const cakesStore = useCakesStore();
 const isFormOpen = ref(false);
 const isFormEdit = ref(false);
 const isLoading = ref(false);
-const metaTitleField = ref(cakesStore.cake[0].meta_title);
-const metaDescriptionField = ref(cakesStore.cake[0].meta_description);
+const visibilityField = ref(cakesStore.cake[0].visibility);
 
-const updateProductMeta = async () => {
+const updateProductVisibility = async () => {
   try {
     isLoading.value = true;
 
-    const formData = {
-      meta_title: metaTitleField.value ? metaTitleField.value.trim() : null,
-      meta_description: metaDescriptionField.value
-        ? metaDescriptionField.value.trim()
-        : null,
-    };
-
-    const result = await cakesStore.updateProductMeta(formData);
+    const result = await cakesStore.updateProductVisibility(
+      visibilityField.value,
+    );
 
     if (result.status.value === "error") {
       toast.error({

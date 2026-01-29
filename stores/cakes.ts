@@ -9,6 +9,19 @@ export interface ICake {
   description_two?: string;
   description_three?: string;
 
+  image_1_small?: string;
+  image_1_big?: string;
+  image_2_small?: string;
+  image_2_big?: string;
+  image_3_small?: string;
+  image_3_big?: string;
+  image_4_small?: string;
+  image_4_big?: string;
+  image_5_small?: string;
+  image_5_big?: string;
+  image_6_small?: string;
+  image_6_big?: string;
+
   meta_title?: string;
   meta_description?: string;
   meta_сanonical_url?: string;
@@ -26,6 +39,8 @@ export interface ICake {
   fat?: string;
   carbohydrates?: string;
   calories?: string;
+
+  visibility: boolean;
 
   createdAt?: any;
   updatedAt?: any;
@@ -119,6 +134,43 @@ export const useCakesStore = defineStore("cakesStore", () => {
               ...item,
               title: formData.title,
               description_short: formData.description_short,
+            }
+          : item,
+      );
+    }
+
+    return result;
+  };
+
+  const updateProductImages = async (formData: ICake) => {
+    const result = await useFetch("/api/cakes/update-images", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        // image_list_card: formData.image_list_card,
+        image_1_small: formData.image_1_small,
+        image_1_big: formData.image_1_big,
+        image_2_small: formData.image_2_small,
+        image_2_big: formData.image_2_big,
+        image_3_small: formData.image_3_small,
+        image_3_big: formData.image_3_big,
+        image_4_small: formData.image_4_small,
+        image_4_big: formData.image_4_big,
+        image_5_small: formData.image_5_small,
+        image_5_big: formData.image_5_big,
+        image_6_small: formData.image_6_small,
+        image_6_big: formData.image_6_big,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              price: formData.price,
+              discount: formData.discount,
+              discount_price: formData.discount_price,
             }
           : item,
       );
@@ -258,6 +310,29 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const updateProductVisibility = async (visibility: boolean) => {
+    const result = await useFetch("/api/cakes/update-visibility", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        visibility: visibility,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              visibility: visibility,
+            }
+          : item,
+      );
+    }
+
+    return result;
+  };
+
   const deleteCake = async () => {
     const result = await useFetch("/api/cakes/delete-cake", {
       method: "DELETE",
@@ -277,11 +352,13 @@ export const useCakesStore = defineStore("cakesStore", () => {
     createCakeTitle,
     updateCakeTitle,
     updateCakeDescription,
+    updateProductImages,
     updateProductMeta,
     updateProductSizes,
     updateProductPrice,
     updateProductIngredients,
     updateProductNutritional,
+    updateProductVisibility,
     deleteCake,
   };
 });

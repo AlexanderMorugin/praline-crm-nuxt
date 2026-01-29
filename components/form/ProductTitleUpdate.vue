@@ -1,8 +1,6 @@
 <template>
   <form @submit.prevent="updateProductTitle" class="form-flex form-flex_open">
-    <div class="form-title">
-      Шаг 1 <span class="form-title form-title_second">(Название)</span>
-    </div>
+    <div class="form-title">Название</div>
 
     <button
       type="button"

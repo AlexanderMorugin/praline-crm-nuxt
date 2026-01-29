@@ -5,6 +5,7 @@ import {
   json,
   integer,
   timestamp,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const orders = pgTable("orders", {
@@ -48,6 +49,19 @@ export const cakes = pgTable("cakes", {
   description_two: text("description_two"),
   description_three: text("description_three"),
 
+  image_1_small: text("image_1_small"),
+  image_1_big: text("image_1_big"),
+  image_2_small: text("image_2_small"),
+  image_2_big: text("image_2_big"),
+  image_3_small: text("image_3_small"),
+  image_3_big: text("image_3_big"),
+  image_4_small: text("image_4_small"),
+  image_4_big: text("image_4_big"),
+  image_5_small: text("image_5_small"),
+  image_5_big: text("image_5_big"),
+  image_6_small: text("image_6_small"),
+  image_6_big: text("image_6_big"),
+
   meta_title: text("meta_title"),
   meta_description: text("meta_description"),
   meta_сanonical_url: text("meta_сanonical_url"),
@@ -55,8 +69,9 @@ export const cakes = pgTable("cakes", {
   weight: integer("weight"),
   width: integer("width"),
   height: integer("height"),
-  expiration_date: integer("expiration_date"),
-  temperature: text("temperature"),
+
+  // expiration_date: integer("expiration_date"),
+  // temperature: text("temperature"),
 
   price: integer("price"),
   discount: integer("discount"),
@@ -68,6 +83,11 @@ export const cakes = pgTable("cakes", {
   protein: text("protein"),
   fat: text("fat"),
   carbohydrates: text("carbohydrates"),
+
+  status: text("status"),
+  rating: integer("rating"),
+
+  visibility: boolean("visibility").notNull().default(true),
 
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),

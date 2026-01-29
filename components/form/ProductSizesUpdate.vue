@@ -4,9 +4,7 @@
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
-    <div class="form-title">
-      Шаг 4 <span class="form-title form-title_second">(Размеры)</span>
-    </div>
+    <div class="form-title">Размеры</div>
 
     <button
       type="button"

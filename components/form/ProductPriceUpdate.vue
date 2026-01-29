@@ -4,9 +4,7 @@
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
-    <div class="form-title">
-      Шаг 5 <span class="form-title form-title_second">(Цена)</span>
-    </div>
+    <div class="form-title">Цена</div>
 
     <button
       type="button"

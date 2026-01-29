@@ -4,9 +4,7 @@
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
-    <div class="form-title">
-      Шаг 6 <span class="form-title form-title_second">(Ингредиенты)</span>
-    </div>
+    <div class="form-title">Ингредиенты</div>
 
     <button
       type="button"

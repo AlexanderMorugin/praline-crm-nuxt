@@ -2,13 +2,20 @@
   <div class="cakeCard">
     <FormProductTitleUpdate />
     <FormProductDescriptionUpdate />
+    <FormProductImageUpdate />
     <FormProductMetaUpdate />
     <FormProductSizesUpdate />
     <FormProductPriceUpdate />
     <FormProductIgredientsUpdate />
     <FormProductNutritionalUpdate />
+    <FormProductVisibilityUpdate />
 
-    <button @click="deleteCake">Удалить</button>
+    <div class="cakeCard__buttons">
+      <!-- <button @click="deleteCake">Видимость</button> -->
+      <!-- <button @click="deleteCake">Удалить</button> -->
+      <ButtonManager name="delivery" />
+      <ButtonManager name="delete" @handleClick="deleteCake" />
+    </div>
   </div>
 </template>
 
@@ -46,5 +53,13 @@ const deleteCake = async () => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 40px;
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    border: 1px solid red;
+  }
 }
 </style>
