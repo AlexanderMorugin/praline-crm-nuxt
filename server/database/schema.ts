@@ -60,12 +60,14 @@ export const cakes = pgTable("cakes", {
 
   price: integer("price"),
   discount: integer("discount"),
+  discount_price: integer("discount_price"),
 
   ingredients: text("ingredients"),
+
+  calories: text("calories"),
   protein: text("protein"),
   fat: text("fat"),
   carbohydrates: text("carbohydrates"),
-  calories: text("calories"),
 
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),

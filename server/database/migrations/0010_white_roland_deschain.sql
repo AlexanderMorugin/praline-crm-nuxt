@@ -1,1 +1,0 @@
-ALTER TABLE "cakes" ADD COLUMN "protein" text;

@@ -52,6 +52,12 @@
         v-model:value="discountField"
         :isFormEdit="isFormEdit"
       />
+      <FormInput
+        label="Цена со скидкой (₽)"
+        name="discountPriceField"
+        v-model:value="discountPriceField"
+        :isFormEdit="false"
+      />
     </div>
 
     <FormSubmit
@@ -72,14 +78,22 @@ const isFormEdit = ref(false);
 const isLoading = ref(false);
 const priceField = ref(cakesStore.cake[0].price);
 const discountField = ref(cakesStore.cake[0].discount);
+const discountPriceField = computed(() =>
+  discountField.value
+    ? Math.round(
+        priceField.value - (priceField.value * discountField.value) / 100,
+      )
+    : priceField.value,
+);
 
 const updateProductPrice = async () => {
   try {
     isLoading.value = true;
 
     const formData = {
-      price: priceField.value ? priceField.value : null,
-      discount: discountField.value ? discountField.value : null,
+      price: priceField.value ? priceField.value : 0,
+      discount: discountField.value ? discountField.value : 0,
+      discount_price: discountPriceField.value,
     };
 
     const result = await cakesStore.updateProductPrice(formData);

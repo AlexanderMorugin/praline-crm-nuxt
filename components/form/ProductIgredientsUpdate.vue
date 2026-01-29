@@ -1,11 +1,11 @@
 <template>
   <form
-    @submit.prevent="updateProductDescription"
+    @submit.prevent="updateProductIngredients"
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
     <div class="form-title">
-      Шаг 2 <span class="form-title form-title_second">(Описание)</span>
+      Шаг 6 <span class="form-title form-title_second">(Ингредиенты)</span>
     </div>
 
     <button
@@ -36,30 +36,12 @@
     </button>
 
     <FormTextarea
-      label="Описание 1"
+      label="Ингредиенты"
       type="text"
-      name="descriptionOneField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionOneField"
-      @clearInput="descriptionOneField = null"
-      :isFormEdit="isFormEdit"
-    />
-    <FormTextarea
-      label="Описание 2"
-      type="text"
-      name="descriptionTwoField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionTwoField"
-      @clearInput="descriptionTwoField = null"
-      :isFormEdit="isFormEdit"
-    />
-    <FormTextarea
-      label="Описание 3"
-      type="text"
-      name="descriptionThreeField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionThreeField"
-      @clearInput="descriptionThreeField = null"
+      name="ingredientsField"
+      placeholder="Ингредиенты"
+      v-model:value="ingredientsField"
+      @clearInput="ingredientsField = null"
       :isFormEdit="isFormEdit"
     />
 
@@ -79,27 +61,19 @@ const cakesStore = useCakesStore();
 const isFormOpen = ref(false);
 const isFormEdit = ref(false);
 const isLoading = ref(false);
-const descriptionOneField = ref(cakesStore.cake[0].description_one);
-const descriptionTwoField = ref(cakesStore.cake[0].description_two);
-const descriptionThreeField = ref(cakesStore.cake[0].description_three);
+const ingredientsField = ref(cakesStore.cake[0].ingredients);
 
-const updateProductDescription = async () => {
+const updateProductIngredients = async () => {
   try {
     isLoading.value = true;
 
     const formData = {
-      description_one: descriptionOneField.value
-        ? descriptionOneField.value.trim()
-        : null,
-      description_two: descriptionTwoField.value
-        ? descriptionTwoField.value.trim()
-        : null,
-      description_three: descriptionThreeField.value
-        ? descriptionThreeField.value.trim()
+      ingredients: ingredientsField.value
+        ? ingredientsField.value.trim()
         : null,
     };
 
-    const result = await cakesStore.updateCakeDescription(formData);
+    const result = await cakesStore.updateProductIngredients(formData);
 
     if (result.status.value === "error") {
       toast.error({

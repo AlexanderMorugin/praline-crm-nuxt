@@ -1,7 +1,7 @@
 <template>
   <div>
     <ProductTopAddingBlock />
-    <CakeList v-if="cakesStore.cakes.length" />
+    <ProductCakeList v-if="cakesStore.cakes.length" />
     <ProductListEmpty v-else title="Тортов пока нет" />
   </div>
 </template>

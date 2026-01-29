@@ -1,16 +1,12 @@
 <template>
-  <form
-    @submit.prevent="updateProductTitle"
-    class="form-flex"
-    :class="isFormOpen ? 'form-flex_open' : ''"
-  >
+  <form @submit.prevent="updateProductTitle" class="form-flex form-flex_open">
     <div class="form-title">
       Шаг 1 <span class="form-title form-title_second">(Название)</span>
     </div>
 
     <button
       type="button"
-      v-if="!isFormEdit && isFormOpen"
+      v-if="!isFormEdit"
       class="form-top-button form-top-button_right"
     >
       <IconEdit @click="isFormEdit = true" class="form-button-edit" />
@@ -18,21 +14,10 @@
 
     <button
       type="button"
-      v-if="isFormEdit && isFormOpen"
+      v-if="isFormEdit"
       class="form-top-button form-top-button_left"
     >
       <IconUndo @click="isFormEdit = false" class="form-button-edit" />
-    </button>
-
-    <button
-      type="button"
-      class="form-bottom-button"
-      :class="isFormOpen ? 'form-bottom-button_open' : ''"
-    >
-      <IconArrowIos
-        @click="isFormOpen = !isFormOpen"
-        class="form-button-edit"
-      />
     </button>
 
     <div class="form-submited-text">
@@ -55,7 +40,7 @@
       @clearInput="titleField = null"
       :isFormEdit="isFormEdit"
     />
-    <FormInput
+    <FormTextarea
       label="Краткое описание * "
       type="text"
       name="descriptionShortField"
@@ -80,7 +65,6 @@
 const toast = useToast();
 const cakesStore = useCakesStore();
 
-const isFormOpen = ref(false);
 const isFormEdit = ref(false);
 const isLoading = ref(false);
 const titleField = ref(cakesStore.cake[0].title);

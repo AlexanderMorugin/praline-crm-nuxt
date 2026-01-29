@@ -8,9 +8,10 @@ export default defineEventHandler(async (event) => {
   const result = await db
     .update(cakes)
     .set({
-      price: body.price,
-      discount: body.discount,
-      discount_price: body.discount_price,
+      calories: body.calories,
+      protein: body.protein,
+      fat: body.fat,
+      carbohydrates: body.carbohydrates,
     })
     .where(eq(cakes.id, body.id))
     .returning();

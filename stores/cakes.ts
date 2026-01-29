@@ -19,6 +19,7 @@ export interface ICake {
 
   price?: number;
   discount?: number;
+  discount_price?: number;
 
   ingredients?: string;
   protein?: string;
@@ -69,28 +70,8 @@ export const useCakesStore = defineStore("cakesStore", () => {
         title: productData.title,
         description_short: productData.description_short,
         meta_сanonical_url: `http://localhost:3000/cakes/${productData.slug}`,
-
-        // description_one: cakeTitleData.description_one,
-        // description_two: cakeTitleData.description_two,
-        // description_three: cakeTitleData.description_three,
-
-        // meta_title: cakeTitleData.meta_title,
-        // meta_description: cakeTitleData.meta_description,
-        // meta_сanonical_url: `http://localhost:3000/cakes/${cakeTitleData.slug}`,
-
-        // weight: cakeTitleData.weight,
-        // width: cakeTitleData.width,
-        // height: cakeTitleData.height,
-
-        // ingredients: cakeTitleData.ingredients,
-        // protein: cakeTitleData.protein,
-        // fat: cakeTitleData.fat,
-        // carbohydrates: cakeTitleData.carbohydrates,
-        // calories: cakeTitleData.calories,
       },
     });
-
-    console.log(result);
 
     return result;
   };
@@ -113,7 +94,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
               title: formData.title,
               description_short: formData.description_short,
             }
-          : item
+          : item,
       );
     }
 
@@ -139,7 +120,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
               title: formData.title,
               description_short: formData.description_short,
             }
-          : item
+          : item,
       );
     }
 
@@ -164,7 +145,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
               meta_title: formData.meta_title,
               meta_description: formData.meta_description,
             }
-          : item
+          : item,
       );
     }
 
@@ -191,7 +172,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
               width: formData.width,
               height: formData.height,
             }
-          : item
+          : item,
       );
     }
 
@@ -205,6 +186,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
         id: cake.value[0].id,
         price: formData.price,
         discount: formData.discount,
+        discount_price: formData.discount_price,
       },
     });
 
@@ -215,8 +197,61 @@ export const useCakesStore = defineStore("cakesStore", () => {
               ...item,
               price: formData.price,
               discount: formData.discount,
+              discount_price: formData.discount_price,
             }
-          : item
+          : item,
+      );
+    }
+
+    return result;
+  };
+
+  const updateProductIngredients = async (formData: ICake) => {
+    const result = await useFetch("/api/cakes/update-ingredients", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        ingredients: formData.ingredients,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              ingredients: formData.ingredients,
+            }
+          : item,
+      );
+    }
+
+    return result;
+  };
+
+  const updateProductNutritional = async (formData: ICake) => {
+    const result = await useFetch("/api/cakes/update-nutritional", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        calories: formData.calories,
+        protein: formData.protein,
+        fat: formData.fat,
+        carbohydrates: formData.carbohydrates,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              calories: formData.calories,
+              protein: formData.protein,
+              fat: formData.fat,
+              carbohydrates: formData.carbohydrates,
+            }
+          : item,
       );
     }
 
@@ -245,6 +280,8 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateProductMeta,
     updateProductSizes,
     updateProductPrice,
+    updateProductIngredients,
+    updateProductNutritional,
     deleteCake,
   };
 });

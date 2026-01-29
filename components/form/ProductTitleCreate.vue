@@ -21,7 +21,7 @@
       @clearInput="titleField = null"
       isFormEdit="true"
     />
-    <FormInput
+    <FormTextarea
       label="Краткое описание * "
       type="text"
       name="descriptionShortField"

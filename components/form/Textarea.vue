@@ -2,26 +2,24 @@
   <div class="form-field">
     <label :for="name" class="form-label">{{ label }}</label>
 
-    <input
+    <textarea
       v-if="isFormEdit"
       :type="type"
       :id="name"
       :name="name"
       :placeholder="placeholder"
-      min="0"
       :value="value"
       @input="updateValue"
-      class="form-input"
-      :class="type === 'number' ? 'form-input_number' : ''"
+      class="form-textarea"
     />
-    <div v-else class="form-input-submited">
-      <span class="form-input-text-submited">{{
+    <div v-else class="form-textarea-submited">
+      <span class="form-textarea-text-submited">{{
         value ? value : "Пусто"
       }}</span>
     </div>
 
     <IconClose
-      v-if="value && isFormEdit && type === 'text'"
+      v-if="value && isFormEdit"
       class="form-clear"
       @click="$emit('clearInput')"
     />

@@ -1,11 +1,11 @@
 <template>
   <form
-    @submit.prevent="updateProductDescription"
+    @submit.prevent="updateProductNutritional"
     class="form-flex"
     :class="isFormOpen ? 'form-flex_open' : ''"
   >
     <div class="form-title">
-      Шаг 2 <span class="form-title form-title_second">(Описание)</span>
+      Шаг 7 <span class="form-title form-title_second">(Ценность)</span>
     </div>
 
     <button
@@ -35,33 +35,44 @@
       />
     </button>
 
-    <FormTextarea
-      label="Описание 1"
-      type="text"
-      name="descriptionOneField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionOneField"
-      @clearInput="descriptionOneField = null"
-      :isFormEdit="isFormEdit"
-    />
-    <FormTextarea
-      label="Описание 2"
-      type="text"
-      name="descriptionTwoField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionTwoField"
-      @clearInput="descriptionTwoField = null"
-      :isFormEdit="isFormEdit"
-    />
-    <FormTextarea
-      label="Описание 3"
-      type="text"
-      name="descriptionThreeField"
-      placeholder="Описание продукта"
-      v-model:value="descriptionThreeField"
-      @clearInput="descriptionThreeField = null"
-      :isFormEdit="isFormEdit"
-    />
+    <div class="form-nutritional">
+      <FormInput
+        label="Калории"
+        type="text"
+        name="caloriesField"
+        placeholder="Цифры"
+        v-model:value="caloriesField"
+        @clearInput="caloriesField = null"
+        :isFormEdit="isFormEdit"
+      />
+      <FormInput
+        label="Белки"
+        type="text"
+        name="proteinField"
+        placeholder="Цифры"
+        v-model:value="proteinField"
+        @clearInput="proteinField = null"
+        :isFormEdit="isFormEdit"
+      />
+      <FormInput
+        label="Жиры"
+        type="text"
+        name="fatField"
+        placeholder="Цифры"
+        v-model:value="fatField"
+        @clearInput="fatField = null"
+        :isFormEdit="isFormEdit"
+      />
+      <FormInput
+        label="Углеводы"
+        type="text"
+        name="carbohydratesField"
+        placeholder="Цифры"
+        v-model:value="carbohydratesField"
+        @clearInput="carbohydratesField = null"
+        :isFormEdit="isFormEdit"
+      />
+    </div>
 
     <FormSubmit
       v-if="isFormEdit"
@@ -79,27 +90,25 @@ const cakesStore = useCakesStore();
 const isFormOpen = ref(false);
 const isFormEdit = ref(false);
 const isLoading = ref(false);
-const descriptionOneField = ref(cakesStore.cake[0].description_one);
-const descriptionTwoField = ref(cakesStore.cake[0].description_two);
-const descriptionThreeField = ref(cakesStore.cake[0].description_three);
+const caloriesField = ref(cakesStore.cake[0].calories);
+const proteinField = ref(cakesStore.cake[0].protein);
+const fatField = ref(cakesStore.cake[0].fat);
+const carbohydratesField = ref(cakesStore.cake[0].carbohydrates);
 
-const updateProductDescription = async () => {
+const updateProductNutritional = async () => {
   try {
     isLoading.value = true;
 
     const formData = {
-      description_one: descriptionOneField.value
-        ? descriptionOneField.value.trim()
-        : null,
-      description_two: descriptionTwoField.value
-        ? descriptionTwoField.value.trim()
-        : null,
-      description_three: descriptionThreeField.value
-        ? descriptionThreeField.value.trim()
+      calories: caloriesField.value ? caloriesField.value.trim() : null,
+      protein: proteinField.value ? proteinField.value.trim() : null,
+      fat: fatField.value ? fatField.value.trim() : null,
+      carbohydrates: carbohydratesField.value
+        ? carbohydratesField.value.trim()
         : null,
     };
 
-    const result = await cakesStore.updateCakeDescription(formData);
+    const result = await cakesStore.updateProductNutritional(formData);
 
     if (result.status.value === "error") {
       toast.error({
