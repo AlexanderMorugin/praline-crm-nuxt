@@ -310,6 +310,29 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const updateProductRating = async (rating: number) => {
+    const result = await useFetch("/api/cakes/update-rating", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        rating: rating,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              rating: rating,
+            }
+          : item,
+      );
+    }
+
+    return result;
+  };
+
   const updateProductVisibility = async (visibility: boolean) => {
     const result = await useFetch("/api/cakes/update-visibility", {
       method: "PATCH",
@@ -358,6 +381,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateProductPrice,
     updateProductIngredients,
     updateProductNutritional,
+    updateProductRating,
     updateProductVisibility,
     deleteCake,
   };

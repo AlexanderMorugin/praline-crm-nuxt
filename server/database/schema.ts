@@ -84,7 +84,7 @@ export const cakes = pgTable("cakes", {
   fat: text("fat"),
   carbohydrates: text("carbohydrates"),
 
-  status: text("status"),
+  badge: text("badge"),
   rating: integer("rating"),
 
   visibility: boolean("visibility").notNull().default(true),
