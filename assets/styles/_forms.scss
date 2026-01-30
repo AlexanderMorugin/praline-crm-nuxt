@@ -23,7 +23,6 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  // grid-template-columns: 1fr;
   gap: 20px;
 
   @media (max-width: 767px) {
@@ -144,6 +143,11 @@
 }
 .form-input:focus::placeholder {
   color: transparent;
+}
+.form-badge-submited {
+  display: flex;
+  align-items: center;
+  height: 100px;
 }
 .form-input-submited {
   display: flex;

@@ -333,6 +333,29 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const updateProductBadge = async (badge: number) => {
+    const result = await useFetch("/api/cakes/update-badge", {
+      method: "PATCH",
+      body: {
+        id: cake.value[0].id,
+        badge: badge,
+      },
+    });
+
+    if (result.status.value === "success") {
+      cakes.value = cakes.value.map((item: ICake) =>
+        item.id === cake.value[0].id
+          ? {
+              ...item,
+              badge: badge,
+            }
+          : item,
+      );
+    }
+
+    return result;
+  };
+
   const updateProductVisibility = async (visibility: boolean) => {
     const result = await useFetch("/api/cakes/update-visibility", {
       method: "PATCH",
@@ -382,6 +405,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateProductIngredients,
     updateProductNutritional,
     updateProductRating,
+    updateProductBadge,
     updateProductVisibility,
     deleteCake,
   };

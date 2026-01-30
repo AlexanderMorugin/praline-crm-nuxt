@@ -9,6 +9,7 @@
     <FormProductIgredientsUpdate />
     <FormProductNutritionalUpdate />
     <FormProductRatingUpdate />
+    <FormProductBadgeUpdate />
     <FormProductVisibilityUpdate />
 
     <!-- <ButtonManager

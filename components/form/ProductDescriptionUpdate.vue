@@ -122,10 +122,10 @@ const updateProductDescription = async () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 .formAddingProduct {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-</style>
+</style> -->
