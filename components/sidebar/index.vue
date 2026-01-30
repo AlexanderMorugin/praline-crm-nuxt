@@ -1,9 +1,11 @@
 <template>
-  <aside :class="['sidebar', { 'page-padding-x': place === 'desktop' }]">
-    <div class="sidebar__content">
+  <aside class="sidebar">
+    <div
+      :class="['sidebar__content', { 'page-padding-x': place === 'desktop' }]"
+    >
       <SidebarMenu @closeModal="$emit('closeModal')" />
     </div>
-    <div>counter</div>
+    <div class="sidebar__counter">counter</div>
   </aside>
 </template>
 
@@ -17,7 +19,7 @@ const { place } = defineProps(["place"]);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 81px);
+  gap: 40px;
   border-right: 1px solid var(--border-primary);
   padding-top: 20px;
 
@@ -26,7 +28,13 @@ const { place } = defineProps(["place"]);
   }
 
   &__content {
-    // border: 1px solid red;
+    position: sticky;
+    top: 40px;
+  }
+
+  &__counter {
+    height: 100px;
+    background: var(--green-primary);
   }
 }
 </style>

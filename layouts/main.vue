@@ -31,22 +31,19 @@ const { isScreenMedium } = useResizeMedium();
   &__content {
     display: grid;
     grid-template-columns: 320px 1fr;
+    min-height: calc(100vh - 81px);
 
     @media (max-width: 1024px) {
       grid-template-columns: 1fr;
+      min-height: calc(100vh - 61px);
     }
   }
 
   &__main {
     width: 100%;
-    height: calc(100vh - 81px);
     background: var(--gradient-primary);
     padding-top: 20px;
     padding-bottom: 20px;
-
-    @media (max-width: 767px) {
-      height: calc(100vh - 61px);
-    }
   }
 }
 </style>
