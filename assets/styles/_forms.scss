@@ -23,6 +23,7 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  // grid-template-columns: 1fr;
   gap: 20px;
 
   @media (max-width: 767px) {
@@ -53,6 +54,7 @@
   display: flex;
   align-items: center;
   gap: 40px;
+  height: 40px;
 }
 .form-submited-text {
   font-family: "Inter-Regular", sans-serif;
@@ -199,6 +201,7 @@
   line-height: 20px;
   letter-spacing: 1px;
   color: var(--white-primary);
+  word-break: break-all;
 }
 .form-clear {
   position: absolute;

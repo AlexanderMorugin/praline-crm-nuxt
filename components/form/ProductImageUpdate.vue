@@ -33,9 +33,9 @@
       />
     </button>
 
-    <div class="form-images">
-      <FormInput
-        label="Маленькое"
+    <div v-if="isFormOpen" class="form-images">
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image1SmallField"
         placeholder="Ссылка на изображение 1"
@@ -43,8 +43,8 @@
         @clearInput="image1SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image1BigField"
         placeholder="Ссылка на изображение 1"
@@ -52,8 +52,8 @@
         @clearInput="image1BigField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Маленькое"
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image2SmallField"
         placeholder="Ссылка на изображение 2"
@@ -61,8 +61,8 @@
         @clearInput="image2SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image2BigField"
         placeholder="Ссылка на изображение 2"
@@ -70,8 +70,8 @@
         @clearInput="image2BigField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Маленькое"
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image3SmallField"
         placeholder="Ссылка на изображение 3"
@@ -79,8 +79,8 @@
         @clearInput="image3SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image3BigField"
         placeholder="Ссылка на изображение 3"
@@ -88,8 +88,8 @@
         @clearInput="image3BigField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Маленькое"
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image4SmallField"
         placeholder="Ссылка на изображение 4"
@@ -97,8 +97,8 @@
         @clearInput="image4SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image4BigField"
         placeholder="Ссылка на изображение 4"
@@ -106,8 +106,8 @@
         @clearInput="image4BigField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Маленькое"
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image5SmallField"
         placeholder="Ссылка на изображение 5"
@@ -115,8 +115,8 @@
         @clearInput="image5SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image5BigField"
         placeholder="Ссылка на изображение 5"
@@ -124,8 +124,8 @@
         @clearInput="image5BigField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Маленькое"
+      <FormTextarea
+        label="Маленькое 800-533.webp (20КБ)"
         type="text"
         name="image6SmallField"
         placeholder="Ссылка на изображение 6"
@@ -133,8 +133,8 @@
         @clearInput="image6SmallField = null"
         :isFormEdit="isFormEdit"
       />
-      <FormInput
-        label="Большое"
+      <FormTextarea
+        label="Большое 2800-1866.webp (100КБ)"
         type="text"
         name="image6BigField"
         placeholder="Ссылка на изображение 6"
