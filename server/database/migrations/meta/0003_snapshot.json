@@ -1,6 +1,6 @@
 {
-  "id": "2d98b394-eda9-4650-8a94-da68fd9bfbdc",
-  "prevId": "732fee2f-7078-4c99-adf8-efb8a28a7ad8",
+  "id": "326fbc28-3a53-4e34-a777-013ff46d5222",
+  "prevId": "728a1340-ea21-4d1a-9105-e1fffc47169c",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -13,6 +13,12 @@
           "type": "serial",
           "primaryKey": true,
           "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "slug": {
           "name": "slug",
@@ -46,12 +52,6 @@
         },
         "description_three": {
           "name": "description_three",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "image_list_card": {
-          "name": "image_list_card",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -164,18 +164,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "expiration_date": {
-          "name": "expiration_date",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "temperature": {
-          "name": "temperature",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "price": {
           "name": "price",
           "type": "integer",
@@ -223,6 +211,95 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "badge": {
+          "name": "badge",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.comments": {
+      "name": "comments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_rating": {
+          "name": "user_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_comment": {
+          "name": "user_comment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
         },
         "created_at": {
           "name": "created_at",

@@ -1,5 +1,5 @@
 {
-  "id": "510be3c9-bad9-4104-bcb8-0714ae1724fd",
+  "id": "b3bf8028-56c3-46af-a196-a5a7520d9cfa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -50,6 +50,78 @@
           "primaryKey": false,
           "notNull": false
         },
+        "image_1_small": {
+          "name": "image_1_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_1_big": {
+          "name": "image_1_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_2_small": {
+          "name": "image_2_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_2_big": {
+          "name": "image_2_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_3_small": {
+          "name": "image_3_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_3_big": {
+          "name": "image_3_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_4_small": {
+          "name": "image_4_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_4_big": {
+          "name": "image_4_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_5_small": {
+          "name": "image_5_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_5_big": {
+          "name": "image_5_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_6_small": {
+          "name": "image_6_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_6_big": {
+          "name": "image_6_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "meta_title": {
           "name": "meta_title",
           "type": "text",
@@ -86,18 +158,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "expiration_date": {
-          "name": "expiration_date",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "temperature": {
-          "name": "temperature",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "price": {
           "name": "price",
           "type": "integer",
@@ -107,6 +167,18 @@
         "discount": {
           "name": "discount",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "discount_price": {
+          "name": "discount_price",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ingredients": {
+          "name": "ingredients",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
@@ -133,6 +205,25 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "badge": {
+          "name": "badge",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         },
         "created_at": {
           "name": "created_at",

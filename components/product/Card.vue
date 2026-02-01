@@ -12,11 +12,11 @@
     <FormProductBadgeUpdate />
     <FormProductVisibilityUpdate />
 
-    <!-- <ButtonManager
+    <ButtonManager
       name="delete"
       :isLoading="isLoading"
       @handleClick="deleteCake"
-    /> -->
+    />
   </div>
 </template>
 

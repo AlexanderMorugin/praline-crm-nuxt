@@ -7,7 +7,7 @@
     >
       <div class="orderProducts__imageBox">
         <img
-          :src="`https://pralinecakes-nuxt.vercel.app/${item.image_list_card}`"
+          :src="`https://pralinecakes-nuxt.vercel.app/${item.image_800}`"
           :alt="item.name"
           class="orderProducts__image"
         />

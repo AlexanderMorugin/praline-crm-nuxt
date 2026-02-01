@@ -3,22 +3,24 @@
     route.path === "/"
       ? "Главная"
       : route.path === "/orders"
-      ? "Заказы"
-      : route.path === `/orders/${route.params.id}`
-      ? "Детали заказа"
-      : route.path === "/cakes"
-      ? "Торты"
-      : route.path === `/cakes/${route.params.slug}`
-      ? "Детали торта"
-      : route.path === "/cakes/add"
-      ? "Новый торт"
-      : route.path === "/pastry"
-      ? "Пирожные"
-      : route.path === "/comments"
-      ? "Отзывы"
-      : route.path === "/info"
-      ? "Информация"
-      : ""
+        ? "Заказы"
+        : route.path === `/orders/${route.params.id}`
+          ? "Детали заказа"
+          : route.path === "/cakes"
+            ? "Торты"
+            : route.path === `/cakes/${route.params.slug}`
+              ? "Детали торта"
+              : route.path === "/cakes/add"
+                ? "Новый торт"
+                : route.path === "/pastry"
+                  ? "Пирожные"
+                  : route.path === "/comments"
+                    ? "Отзывы"
+                    : route.path === `/comments/${route.params.id}`
+                      ? "Детали отзыва"
+                      : route.path === "/info"
+                        ? "Информация"
+                        : ""
   }}</span>
 </template>
 

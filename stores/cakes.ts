@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 export interface ICake {
   id?: any;
+  type?: string;
   slug?: string;
   title?: string;
   description_short?: string;
@@ -81,6 +82,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
     const result = await useFetch("/api/cakes/create-title", {
       method: "POST",
       body: {
+        type: "cakes",
         slug: productData.slug,
         title: productData.title,
         description_short: productData.description_short,
@@ -390,6 +392,14 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
+  const findCakeById = (cakeId: number) => {
+    let cakeImg = null;
+
+    cakeImg = cakes.value.find((item: ICake) => item.id === cakeId);
+
+    return cakeImg;
+  };
+
   return {
     cakes,
     cake,
@@ -408,5 +418,6 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateProductBadge,
     updateProductVisibility,
     deleteCake,
+    findCakeById,
   };
 });

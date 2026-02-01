@@ -13,7 +13,8 @@
       <ButtonWithIcon
         v-if="
           route.path === `/orders/${route.params.id}` ||
-          route.path === `/cakes/${route.params.id}` ||
+          route.path === `/comments/${route.params.id}` ||
+          route.path === `/cakes/${route.params.slug}` ||
           route.path === '/cakes/add'
         "
         name="back"

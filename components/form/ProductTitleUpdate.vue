@@ -18,9 +18,15 @@
       <IconUndo @click="isFormEdit = false" class="form-button-edit" />
     </button>
 
-    <div class="form-submited-text">
-      <span class="form-submited-text-noAccent">ID: </span
-      >{{ cakesStore.cake[0].id }}
+    <div class="form-field-radio">
+      <div class="form-submited-text">
+        <span class="form-submited-text-noAccent">ID: </span
+        >{{ cakesStore.cake[0].id }}
+      </div>
+      <div class="form-submited-text">
+        <span class="form-submited-text-noAccent">Type: </span
+        >{{ cakesStore.cake[0].type }}
+      </div>
     </div>
 
     <div class="form-submited-text">

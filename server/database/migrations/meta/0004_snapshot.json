@@ -1,6 +1,6 @@
 {
-  "id": "f75f3a77-c0ef-4d48-9be3-1b1eb26e2951",
-  "prevId": "2d98b394-eda9-4650-8a94-da68fd9bfbdc",
+  "id": "eb5559d9-8711-496d-8e04-d5fb1916cf5c",
+  "prevId": "326fbc28-3a53-4e34-a777-013ff46d5222",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -13,6 +13,12 @@
           "type": "serial",
           "primaryKey": true,
           "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "slug": {
           "name": "slug",
@@ -206,8 +212,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "status": {
-          "name": "status",
+        "badge": {
+          "name": "badge",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -224,6 +230,76 @@
           "primaryKey": false,
           "notNull": true,
           "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.comments": {
+      "name": "comments",
+      "schema": "",
+      "columns": {
+        "order_id": {
+          "name": "order_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_rating": {
+          "name": "user_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_comment": {
+          "name": "user_comment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
         },
         "created_at": {
           "name": "created_at",

@@ -1,6 +1,6 @@
 {
-  "id": "d135409a-51f0-4936-9293-cccc33cd6537",
-  "prevId": "510be3c9-bad9-4104-bcb8-0714ae1724fd",
+  "id": "ce7d320d-037e-4102-8ac1-46a4aa775ee6",
+  "prevId": "b3bf8028-56c3-46af-a196-a5a7520d9cfa",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -13,6 +13,12 @@
           "type": "serial",
           "primaryKey": true,
           "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "slug": {
           "name": "slug",
@@ -46,6 +52,78 @@
         },
         "description_three": {
           "name": "description_three",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_1_small": {
+          "name": "image_1_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_1_big": {
+          "name": "image_1_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_2_small": {
+          "name": "image_2_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_2_big": {
+          "name": "image_2_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_3_small": {
+          "name": "image_3_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_3_big": {
+          "name": "image_3_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_4_small": {
+          "name": "image_4_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_4_big": {
+          "name": "image_4_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_5_small": {
+          "name": "image_5_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_5_big": {
+          "name": "image_5_big",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_6_small": {
+          "name": "image_6_small",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_6_big": {
+          "name": "image_6_big",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -86,18 +164,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "expiration_date": {
-          "name": "expiration_date",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "temperature": {
-          "name": "temperature",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "price": {
           "name": "price",
           "type": "integer",
@@ -106,6 +172,12 @@
         },
         "discount": {
           "name": "discount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "discount_price": {
+          "name": "discount_price",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -139,6 +211,25 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "badge": {
+          "name": "badge",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         },
         "created_at": {
           "name": "created_at",

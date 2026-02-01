@@ -1,1 +1,0 @@
-ALTER TABLE "cakes" ADD COLUMN "discount_price" integer;

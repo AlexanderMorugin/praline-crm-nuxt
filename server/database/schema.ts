@@ -42,6 +42,7 @@ export const orders = pgTable("orders", {
 
 export const cakes = pgTable("cakes", {
   id: serial("id").primaryKey(),
+  type: text("type"),
   slug: text("slug"),
   title: text("title"),
   description_short: text("description_short"),
@@ -88,6 +89,22 @@ export const cakes = pgTable("cakes", {
   rating: integer("rating"),
 
   visibility: boolean("visibility").notNull().default(true),
+
+  createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
+});
+
+export const comments = pgTable("comments", {
+  id: serial("order_id").primaryKey(),
+  date: text("date"),
+
+  product_id: integer("product_id"),
+
+  user_name: text("user_name"),
+  user_rating: integer("user_rating"),
+  user_comment: text("user_comment"),
+
+  visibility: boolean("visibility").notNull().default(false),
 
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),

@@ -13,8 +13,6 @@
 
 <script setup>
 const cakesStore = useCakesStore();
-
-// await cakesStore.loadCakes();
 </script>
 
 <style lang="scss" scoped>

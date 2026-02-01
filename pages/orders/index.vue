@@ -19,11 +19,3 @@ const ordersStore = useOrdersStore();
 
 await ordersStore.loadOrders();
 </script>
-
-<!-- <style lang="scss" scoped>
-.orders {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-</style> -->

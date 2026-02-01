@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   const cakeTitle = {
+    type: body.type,
     slug: body.slug.toLowerCase(),
     title: body.title,
     description_short: body.description_short,
