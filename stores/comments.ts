@@ -37,13 +37,13 @@ export const useCommentsStore = defineStore("commentsStore", () => {
       },
     });
 
-    console.log(result.data.value);
+    // console.log(result.data.value);
 
-    // if (result.status.value === "success") {
-    //   comment.value = result.data.value[0];
-    // }
+    if (result.status.value === "success") {
+      comment.value = result.data.value;
+    }
 
-    // return result;
+    return result;
   };
 
   return {

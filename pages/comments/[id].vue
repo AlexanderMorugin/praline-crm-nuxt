@@ -1,8 +1,7 @@
 <template>
   <div class="commentPage">
-    {{ route.params.id }}
-    <!-- <OrderCard :order="orderStore.order" />
-    <OrderManager /> -->
+    <!-- {{ route.params.id }} -->
+    <CommentCard :comment="commentsStore.comment[0]" />
   </div>
 </template>
 
@@ -11,6 +10,7 @@ definePageMeta({
   layout: "main",
 });
 const route = useRoute();
+
 const commentsStore = useCommentsStore();
 await commentsStore.getComment(route.params.id);
 </script>
