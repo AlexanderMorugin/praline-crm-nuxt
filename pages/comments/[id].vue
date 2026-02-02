@@ -1,6 +1,5 @@
 <template>
-  <div class="commentPage">
-    <!-- {{ route.params.id }} -->
+  <div>
     <CommentCard :comment="commentsStore.comment[0]" />
   </div>
 </template>
@@ -12,13 +11,7 @@ definePageMeta({
 const route = useRoute();
 
 const commentsStore = useCommentsStore();
+const cakesStore = useCakesStore();
 await commentsStore.getComment(route.params.id);
+await cakesStore.loadCakes();
 </script>
-
-<style lang="scss" scoped>
-.commentPage {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-</style>

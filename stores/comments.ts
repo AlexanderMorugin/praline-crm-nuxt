@@ -37,11 +37,44 @@ export const useCommentsStore = defineStore("commentsStore", () => {
       },
     });
 
-    // console.log(result.data.value);
-
     if (result.status.value === "success") {
       comment.value = result.data.value;
     }
+
+    return result;
+  };
+
+  const updateVisibility = async () => {
+    const result = await $fetch("/api/comments/update-comment", {
+      method: "PATCH",
+      body: {
+        id: comment.value[0].id,
+        visibility: !comment.value[0].visibility,
+      },
+    });
+
+    if (result) {
+      comment.value[0].visibility = !comment.value[0].visibility;
+
+      // comments.value = comments.value.map((item: IComment) =>
+      //   item.id === comment.value[0].id
+      //     ? { ...item, visibility: !comment.value[0].visibility }
+      //     : item,
+      // );
+    }
+
+    // if (result.status.value === "success") {
+    //   comment.value[0].visibility = !comment.value[0].visibility;
+
+    //   //   comments.value = comments.value.map((item: IComment) =>
+    //   //     item.id === comment.value.id
+    //   //       ? { ...item, visibility: !comment.value.visibility }
+    //   //       : item,
+    //   //   );
+    // }
+
+    // console.log(comment.value[0].visibility);
+    console.log("comments.value", comments.value);
 
     return result;
   };
@@ -51,5 +84,6 @@ export const useCommentsStore = defineStore("commentsStore", () => {
     comment,
     loadComments,
     getComment,
+    updateVisibility,
   };
 });
