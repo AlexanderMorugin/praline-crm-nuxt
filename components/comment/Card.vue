@@ -229,8 +229,4 @@ const deleteComment = async () => {
     fill: var(--black-primary);
   }
 }
-
-// .commentCard__visibilityButton:hover .commentCard__visibilityText {
-//   color: var(--red-primary);
-// }
 </style>
