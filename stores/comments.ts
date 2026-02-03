@@ -2,11 +2,16 @@ import { defineStore } from "pinia";
 
 export interface IComment {
   id?: number;
-  product_id?: number;
   date?: string;
+
+  product_id?: number;
+  product_image?: string;
+  product_title?: string;
+
   user_name?: string;
   user_rating?: number;
   user_comment?: string;
+
   visibility?: boolean;
 
   createdAt?: any;
@@ -55,26 +60,24 @@ export const useCommentsStore = defineStore("commentsStore", () => {
 
     if (result) {
       comment.value[0].visibility = !comment.value[0].visibility;
-
-      // comments.value = comments.value.map((item: IComment) =>
-      //   item.id === comment.value[0].id
-      //     ? { ...item, visibility: !comment.value[0].visibility }
-      //     : item,
-      // );
     }
 
-    // if (result.status.value === "success") {
-    //   comment.value[0].visibility = !comment.value[0].visibility;
+    return result;
+  };
 
-    //   //   comments.value = comments.value.map((item: IComment) =>
-    //   //     item.id === comment.value.id
-    //   //       ? { ...item, visibility: !comment.value.visibility }
-    //   //       : item,
-    //   //   );
-    // }
+  const deleteComment = async () => {
+    const result = await useFetch("/api/comments/delete-comment", {
+      method: "DELETE",
+      body: {
+        id: comment.value[0].id,
+      },
+    });
 
-    // console.log(comment.value[0].visibility);
-    console.log("comments.value", comments.value);
+    if (result.status.value === "success") {
+      comments.value = comments.value.filter(
+        (item: IComment) => item.id !== comment.value[0].id,
+      );
+    }
 
     return result;
   };
@@ -85,5 +88,6 @@ export const useCommentsStore = defineStore("commentsStore", () => {
     loadComments,
     getComment,
     updateVisibility,
+    deleteComment,
   };
 });

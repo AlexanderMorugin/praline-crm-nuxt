@@ -11,7 +11,5 @@ definePageMeta({
 const route = useRoute();
 
 const commentsStore = useCommentsStore();
-const cakesStore = useCakesStore();
 await commentsStore.getComment(route.params.id);
-await cakesStore.loadCakes();
 </script>

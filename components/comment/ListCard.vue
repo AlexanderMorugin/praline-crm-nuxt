@@ -2,8 +2,8 @@
   <NuxtLink :to="`/comments/${comment.id}`" class="commentListCard">
     <div class="commentListCard__imageBox">
       <img
-        :src="cakesStore.findCakeById(comment.product_id).image_1_small"
-        :alt="cakesStore.findCakeById(comment.product_id).title"
+        :src="comment.product_image"
+        :alt="comment.product_title"
         class="commentListCard__image"
       />
     </div>
@@ -17,7 +17,6 @@
 
 <script setup>
 const { comment } = defineProps(["comment"]);
-const cakesStore = useCakesStore();
 </script>
 
 <style lang="scss" scoped>

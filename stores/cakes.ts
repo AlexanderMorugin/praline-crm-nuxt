@@ -392,13 +392,13 @@ export const useCakesStore = defineStore("cakesStore", () => {
     return result;
   };
 
-  const findCakeById = (cakeId: number) => {
-    let cakeImg = null;
+  // const findCakeById = (cakeId: number) => {
+  //   let cakeImg = null;
 
-    cakeImg = cakes.value.find((item: ICake) => item.id === cakeId);
+  //   cakeImg = cakes.value.find((item: ICake) => item.id === cakeId);
 
-    return cakeImg;
-  };
+  //   return cakeImg;
+  // };
 
   return {
     cakes,
@@ -418,6 +418,6 @@ export const useCakesStore = defineStore("cakesStore", () => {
     updateProductBadge,
     updateProductVisibility,
     deleteCake,
-    findCakeById,
+    // findCakeById,
   };
 });

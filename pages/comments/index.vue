@@ -11,8 +11,8 @@ definePageMeta({
 });
 
 const commentsStore = useCommentsStore();
-const cakesStore = useCakesStore();
+// const cakesStore = useCakesStore();
 
 await commentsStore.loadComments();
-await cakesStore.loadCakes();
+// await cakesStore.loadCakes();
 </script>

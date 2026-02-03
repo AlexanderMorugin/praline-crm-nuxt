@@ -2,59 +2,68 @@
   <div class="commentCard">
     <div class="commentCard__top">
       <div class="commentCard__product">
-        <span class="commentCard__user">{{ comment.user_name }}</span>
-        <span class="commentCard__date">{{ comment.date }}</span>
+        <div class="commentCard__imageBox">
+          <img
+            :src="comment.product_image"
+            :alt="comment.product_title"
+            class="commentCard__image"
+          />
+        </div>
+
+        <span class="commentCard__productTitle">{{
+          comment.product_title
+        }}</span>
       </div>
+
       <div class="commentCard__visibilityBlock">
         <div class="commentCard__iconBox">
           <span class="commentCard__date">сейчас</span>
           <IconVisibility v-if="comment.visibility" class="commentCard__icon" />
           <IconVisibilityOff v-else class="commentCard__icon" />
         </div>
-        <button class="commentCard__visibilityButton" @click="updateVisibility">
-          <span class="commentCard__visibilityText">{{
-            comment.visibility ? "скрыть" : "активировать"
-          }}</span>
-        </button>
+
+        <ButtonWithText
+          :text="comment.visibility ? 'скрыть' : 'активировать'"
+          @handleClick="updateVisibility"
+        />
       </div>
     </div>
 
-    <!-- <div class="commentCard__product">
-      <div class="commentCard__imageBox">
-        <img
-          :src="cakesStore.findCakeById(comment.product_id).image_1_small"
-          :alt="cakesStore.findCakeById(comment.product_id).title"
-          class="commentCard__image"
-        />
-      </div>
-
-      <span class="commentCard__productTitle">{{
-        cakesStore.findCakeById(comment.product_id).title
-      }}</span>
-    </div> -->
+    <div class="commentCard__product">
+      <span class="commentCard__user">{{ comment.user_name }}</span>
+      <span class="commentCard__date">{{ comment.date }}</span>
+    </div>
 
     <ProductRating :rating="comment.user_rating" :maxStars="5" />
 
     <div>
       <span class="commentCard__title">Отзыв:</span>
-      <p class="commentCard__text">
+      <div class="commentCard__text">
         {{ comment.user_comment }}
-      </p>
+      </div>
+    </div>
+
+    <div class="commentCard__deleteBlock">
+      <ButtonWithText
+        color="red"
+        text="удалить"
+        @handleClick="isConfirmModalOpen = true"
+      />
     </div>
 
     <!-- Модалка подтверждения -->
-    <!-- <Teleport to="#teleports">
+    <Teleport to="#teleports">
       <Transition name="top">
         <ModalConfirm
           v-if="isConfirmModalOpen"
           :isModalOpen="isConfirmModalOpen"
-          title="Подтвердить видимость"
+          title="Подтвердить удаление?"
           :isLoading="isLoading"
-          @yesClick="updateVisibility"
+          @yesClick="deleteComment"
           @noClick="isConfirmModalOpen = false"
         />
       </Transition>
-    </Teleport> -->
+    </Teleport>
   </div>
 </template>
 
@@ -65,12 +74,6 @@ const commentsStore = useCommentsStore();
 
 const isLoading = ref(false);
 const isConfirmModalOpen = ref(false);
-// const vision = ref(comment.visibility);
-
-// const cakesStore = useCakesStore();
-// const product = computed(() =>
-//   cakesStore.findCakeById(commentsStore.comment[0].product_id),
-// );
 
 const updateVisibility = async () => {
   try {
@@ -78,23 +81,45 @@ const updateVisibility = async () => {
 
     const result = await commentsStore.updateVisibility();
 
-    // console.log(result);
+    if (result) {
+      toast.success({
+        title: "Успешно!",
+        message: "Отзыв виден на клиентском сайте.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    toast.error({
+      title: "Ошибка!",
+      message: "Изменения выполнить не удалось.",
+    });
+  } finally {
+    isLoading.value = false;
+  }
+};
 
-    // if (result.status.value === "error") {
-    //   toast.error({
-    //     title: "Ошибка!",
-    //     message: "Изменения выполнить не удалось.",
-    //   });
-    // }
-    // if (result.status.value === "success") {
-    //   toast.success({
-    //     title: "Успешно!",
-    //     message: "Отзыв виден на клиентском сайте.",
-    //   });
-    //   isConfirmModalOpen.value = false;
-    // }
-  } catch (error) {
-    console.log(error);
+const deleteComment = async () => {
+  try {
+    isLoading.value = true;
+
+    const result = await commentsStore.deleteComment();
+
+    if (result.status.value === "error") {
+      toast.error({
+        title: "Ошибка!",
+        message: "Отзыв удалить не удалось.",
+      });
+    }
+
+    if (result.status.value === "success") {
+      toast.success({
+        title: "Успешно!",
+        message: "Отзыв удален.",
+      });
+      return navigateTo("/comments");
+    }
+  } catch (err) {
+    console.log(err);
   } finally {
     isLoading.value = false;
   }
@@ -111,7 +136,10 @@ const updateVisibility = async () => {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    // border: 1px solid red;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
   }
 
   &__product {
@@ -170,6 +198,7 @@ const updateVisibility = async () => {
     font-size: 20px;
     line-height: 28px;
     color: var(--black-primary);
+    word-break: break-all;
     padding-top: 10px;
   }
 
@@ -177,42 +206,15 @@ const updateVisibility = async () => {
     display: flex;
     align-items: center;
     gap: 20px;
-  }
-
-  &__visibilityText {
-    font-family: "Inter-SemiBold", sans-serif;
-    font-size: 12px;
-    color: var(--white-primary);
-    text-transform: uppercase;
-    // transition: 0.2s ease;
 
     @media (max-width: 767px) {
-      font-size: 12px;
+      justify-content: flex-end;
     }
   }
 
-  &__visibilityButton {
+  &__deleteBlock {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    // width: 40px;
-    height: 40px;
-    background: var(--mask-blue-thirdly);
-    border-radius: var(--border-radius-xs);
-    padding: 5px 10px;
-    transition: 0.2s ease;
-
-    &:hover {
-      background: var(--red-secondary);
-    }
-
-    // border-bottom: 1px dashed var(--deep-blue-thirdly);
-    // padding-bottom: 5px;
-    // transition: 0.2s ease;
-
-    // &:hover {
-    //   border-bottom: 1px dashed var(--red-primary);
-    // }
+    justify-content: flex-end;
   }
 
   &__iconBox {

@@ -248,9 +248,9 @@ const deleteOrder = async () => {
         title: "Успешно!",
         message: "Заказ удален.",
       });
-    }
 
-    return navigateTo("/orders");
+      return navigateTo("/orders");
+    }
   } catch (err) {
     console.log(err);
   } finally {
