@@ -6,18 +6,14 @@
       class="orderProducts__item"
     >
       <div class="orderProducts__imageBox">
-        <img
-          :src="`https://pralinecakes-nuxt.vercel.app/${item.image_800}`"
-          :alt="item.name"
-          class="orderProducts__image"
-        />
+        <img :src="item.image" :alt="item.title" class="orderProducts__image" />
       </div>
 
       <div class="orderProducts__block">
         <div class="orderProducts__details">
           <div class="orderProducts__title">
             <span class="orderProducts__accent orderProducts__titleHeight">{{
-              item.name
+              item.title
             }}</span>
             <span class="orderProducts__noAccent orderProducts__titleHeight"
               >{{ item.weigth }}гр</span
@@ -59,6 +55,8 @@
 
 <script setup>
 const { order } = defineProps(["order"]);
+
+console.log(order.cart_list);
 </script>
 
 <style lang="scss" scoped>

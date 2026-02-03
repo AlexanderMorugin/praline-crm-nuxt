@@ -34,7 +34,7 @@ const { comment } = defineProps(["comment"]);
 <style lang="scss" scoped>
 .commentListCard {
   display: grid;
-  grid-template-columns: 40px auto 1fr auto auto;
+  grid-template-columns: 100px auto 1fr auto auto;
   gap: 10px;
   border-radius: var(--border-radius-l);
   border: 1px solid var(--border-primary);
@@ -43,6 +43,7 @@ const { comment } = defineProps(["comment"]);
   transition: 0.2s ease;
 
   @media (max-width: 767px) {
+    grid-template-columns: 40px auto 1fr auto auto;
     padding: 5px;
   }
 
@@ -52,18 +53,19 @@ const { comment } = defineProps(["comment"]);
 
   &_active {
     background: var(--green-secondary);
-
-    // &:hover {
-    //   background: var(--green-secondary);
-    // }
   }
 
   &__imageBox {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 78px;
     border-radius: var(--border-radius-s);
     background: var(--mask-white-primary);
     overflow: hidden;
+
+    @media (max-width: 767px) {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &__image {
