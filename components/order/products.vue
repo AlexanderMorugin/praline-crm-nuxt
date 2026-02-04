@@ -5,9 +5,7 @@
       :key="item.id"
       class="orderProducts__item"
     >
-      <div class="orderProducts__imageBox">
-        <img :src="item.image" :alt="item.title" class="orderProducts__image" />
-      </div>
+      <ProductImage :src="item.image" :alt="item.title" />
 
       <div class="orderProducts__block">
         <div class="orderProducts__details">
@@ -15,8 +13,9 @@
             <span class="orderProducts__accent orderProducts__titleHeight">{{
               item.title
             }}</span>
-            <span class="orderProducts__noAccent orderProducts__titleHeight"
-              >{{ item.weigth }}гр</span
+            <span
+              class="orderProducts__noAccent orderProducts__titleHeight orderProducts__count"
+              >{{ item.weight }}гр</span
             >
           </div>
 
@@ -55,8 +54,6 @@
 
 <script setup>
 const { order } = defineProps(["order"]);
-
-console.log(order.cart_list);
 </script>
 
 <style lang="scss" scoped>
@@ -66,13 +63,17 @@ console.log(order.cart_list);
   gap: 40px;
   width: fit-content;
 
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
   &__item {
     display: grid;
     grid-template-columns: 100px 1fr;
     column-gap: 10px;
 
     @media (max-width: 767px) {
-      grid-template-columns: 60px 1fr;
+      grid-template-columns: 40px 1fr;
     }
   }
 
@@ -80,6 +81,7 @@ console.log(order.cart_list);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 6px;
   }
 
   &__details {
@@ -100,25 +102,6 @@ console.log(order.cart_list);
     column-gap: 10px;
     row-gap: 10px;
     padding-top: 5px;
-  }
-
-  &__imageBox {
-    width: 100px;
-    height: 78px;
-    border-radius: var(--border-radius-s);
-    background: var(--mask-white-primary);
-    overflow: hidden;
-
-    @media (max-width: 767px) {
-      width: 60px;
-      height: 60px;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   &__count {

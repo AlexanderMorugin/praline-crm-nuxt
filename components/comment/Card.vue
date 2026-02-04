@@ -2,13 +2,10 @@
   <div class="commentCard">
     <div class="commentCard__top">
       <div class="commentCard__product">
-        <div class="commentCard__imageBox">
-          <img
-            :src="comment.product_image"
-            :alt="comment.product_title"
-            class="commentCard__image"
-          />
-        </div>
+        <ProductImage
+          :src="comment.product_image"
+          :alt="comment.product_title"
+        />
 
         <span class="commentCard__productTitle">{{
           comment.product_title
@@ -153,25 +150,6 @@ const deleteComment = async () => {
     font-size: 14px;
     line-height: 22px;
     color: var(--mask-black-thirdly);
-  }
-
-  &__imageBox {
-    width: 100px;
-    height: 78px;
-    border-radius: var(--border-radius-s);
-    background: var(--mask-white-primary);
-    overflow: hidden;
-
-    @media (max-width: 767px) {
-      width: 60px;
-      height: 60px;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   &__user {

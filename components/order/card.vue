@@ -26,7 +26,6 @@
     <OrderProducts :order="order" />
     <div class="line-solid" />
     <OrderTotal :order="order" />
-    <!-- <div class="test">{{ order }}</div> -->
   </div>
 </template>
 
