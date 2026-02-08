@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <ProductTopAddingBlock />
-    <ProductCakeList v-if="cakesStore.cakes.length" />
-    <ProductListEmpty v-else title="Тортов пока нет" />
-  </div>
+  <!-- <div> -->
+  <ProductTopAddingBlock />
+  <ProductCakeList v-if="cakesStore.cakes.length" />
+  <ProductListEmpty v-else title="Тортов пока нет" />
+  <!-- </div> -->
 </template>
 
 <script setup>

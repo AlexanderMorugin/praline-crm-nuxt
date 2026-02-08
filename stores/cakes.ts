@@ -25,7 +25,7 @@ export interface ICake {
 
   meta_title?: string;
   meta_description?: string;
-  meta_сanonical_url?: string;
+  // meta_сanonical_url?: string;
 
   weight?: number;
   width?: number;
@@ -86,7 +86,7 @@ export const useCakesStore = defineStore("cakesStore", () => {
         slug: productData.slug,
         title: productData.title,
         description_short: productData.description_short,
-        meta_сanonical_url: `http://localhost:3000/cakes/${productData.slug}`,
+        // meta_сanonical_url: `${SITE}/${productData.slug}`,
       },
     });
 

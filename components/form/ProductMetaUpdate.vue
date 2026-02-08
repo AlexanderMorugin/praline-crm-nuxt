@@ -33,10 +33,10 @@
       />
     </button>
 
-    <div class="form-submited-text">
+    <!-- <div class="form-submited-text">
       <span class="form-submited-text-noAccent">Canonical URL: </span
       >{{ cakesStore.cake[0].meta_сanonical_url }}
-    </div>
+    </div> -->
 
     <FormInput
       label="Meta Title"
